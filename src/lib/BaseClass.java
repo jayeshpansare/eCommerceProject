@@ -3,6 +3,7 @@ package lib;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -22,10 +23,16 @@ public class BaseClass {
 //        WebDriverManager.firefoxdriver().setup();
 //        driver = new FirefoxDriver();
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.getBrowserName();
+        options.getBrowserVersion();
+//        options.addArguments("--headless");
+        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+        options.addArguments("--incognito");
+
+        driver = new ChromeDriver(options);
         driver.get(webURL);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
     }
     public WebDriver getDriver(){
         return driver;

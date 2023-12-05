@@ -1,7 +1,7 @@
 #Author: Jayesh
 #Keywords Summary :
-#Feature: about us us pages
-#Scenario: validate about us page on web site
+#Feature: Add product page
+#Scenario: validate product page on web site
 #Given:
 #When:
 #Then:
