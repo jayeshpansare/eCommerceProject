@@ -7,7 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
@@ -110,6 +112,7 @@ public class AddProducts {
       * 
       * ***/   
     public void selectTopLevel(String arg1) {
+        topLevelddlres.click();
         String gettopLvlRes = topLevelddlres.getAttribute("aria-owns");
         WebElement lowLevelCatddl = driver.findElement(By.xpath("//ul[@id="+'"'+gettopLvlRes+'"'+"]/li[text()="+'"'+arg1+'"'+"]"));
         lowLevelCatddl.click();
@@ -131,21 +134,25 @@ public class AddProducts {
     @FindBy(name = "p_name")
     WebElement productName;
     public void enterProductName(String arg1) {
+        productName.clear();
         productName.sendKeys(arg1);
     }
     @FindBy(name = "p_old_price")
     WebElement oldPrice;
     public void enterOldprice(String arg1) {
+        oldPrice.clear();
         oldPrice.sendKeys(arg1);
     }
     @FindBy(name = "p_current_price")
     WebElement currentPrice;
     public void enterNewPrice(String arg1) {
+        currentPrice.clear();
         currentPrice.sendKeys(arg1);
     }
     @FindBy(name = "p_qty")
     WebElement quantity;
     public void enterQuantity(String arg1) {
+        quantity.clear();
         quantity.sendKeys(arg1);
 
     }
@@ -176,28 +183,33 @@ public class AddProducts {
     @FindBy(xpath = "//textarea[@id=\"editor1\"]/following-sibling::div/div[3]/div[2]")
     WebElement enterDesc;
     public void enterDesc(String arg1) {
+        enterDesc.clear();
         enterDesc.sendKeys(arg1);
     }
     @FindBy(xpath = "//textarea[@id=\"editor2\"]/following-sibling::div/div[3]/div[2]")
     WebElement shortDesc;
     public void enterShortDesc(String arg1) {
+        shortDesc.clear();
         shortDesc.sendKeys(arg1);
     }
     @FindBy(xpath = "//textarea[@id=\"editor3\"]/following-sibling::div/div[3]/div[2]")
     WebElement featureDesc;
     public void enterfeatureDesc(String arg1) {
+        featureDesc.clear();
         featureDesc.sendKeys(arg1);
     }
     @FindBy(xpath = "//textarea[@id=\"editor4\"]/following-sibling::div/div[3]/div[2]")
     WebElement conditionDesc;
 
     public void enterConditionDesc(String arg1) {
+        conditionDesc.clear();
         conditionDesc.sendKeys(arg1);
     }
     @FindBy(xpath = "//textarea[@id=\"editor5\"]/following-sibling::div/div[3]/div[2]")
     WebElement PolicyDesc;
 
     public void enterPolicyDesc(String arg1) {
+        PolicyDesc.clear();
         PolicyDesc.sendKeys(arg1);
     }
     @FindBy(name = "p_is_featured")
@@ -217,5 +229,53 @@ public class AddProducts {
     WebElement getAddSucessMsg;
     public String getSuccessMsg() {
         return getAddSucessMsg.getText();
+    }
+
+    @FindBy(linkText = "View All")
+    WebElement viewAllBtn;
+    public void clickOnViewAllBtn() {
+        viewAllBtn.click();
+    }
+    @FindBy(xpath = "//table[@id=\"example1\"]/tbody/tr[1]/td[10]/a[1]")
+    WebElement editBtn;
+
+    public void clickOnEditBtn() {
+        editBtn.click();
+    }
+    @FindBy(xpath = "//button[@name=\"form1\" and text()=\"Update\"]")
+    WebElement addProductUpdateBtn;
+    public void clickOnUpdateBtn() {
+        WaitAction objWait = new WaitAction();
+        objWait.expliciteWaitEleClickable(driver, 10, addProductUpdateBtn);
+        addProductUpdateBtn.click();
+    }
+    public void scrolltoupdateProductEle() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true)", addProductUpdateBtn);
+    }
+    @FindBy(xpath = "//table[@id=\"example1\"]/tbody/tr[1]/td[10]/a[1]")
+    WebElement deleteBtn;
+    public void clickOnDeletebtn() {
+        deleteBtn.click();
+    }
+    @FindBy(id = "myModalLabel")
+    WebElement headerTitle;
+    public void getDeleteConPopupTitle() {
+        headerTitle.getText();
+    }
+    @FindBy(xpath = "//div[@class=\"modal-body\"]/p[1]")
+    WebElement deleteModelTitle;
+    public void getDeleteConPopupModelTitle() {
+        deleteModelTitle.getText();
+    }
+    @FindBy(xpath = "//div[@class=\"modal-body\"]/p[2]")
+    WebElement getDeleteModelDesc;
+    public void getDeleteConPopDesc() {
+        getDeleteModelDesc.getText();
+    }
+    @FindBy(xpath = "//div[@class=\"modal-footer\"]/button")
+    WebElement popupDeleteBtn;
+    public void clickOnDeletePopupBtn() {
+        popupDeleteBtn.click();
     }
 }

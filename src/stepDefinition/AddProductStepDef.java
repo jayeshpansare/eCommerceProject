@@ -1,12 +1,11 @@
 package stepDefinition;
 
 import cucumber.api.PendingException;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import cucumber.api.java.en.*;
 import lib.BaseClass;
 import lib.Dataprovider;
 import lib.MyRetry;
+import lib.TableEntry;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.IRetryAnalyzer;
@@ -187,5 +186,99 @@ public class AddProductStepDef extends BaseClass {
     public void displaySuccessMessageAs(String arg0) {
         AddProducts objAddProducts = new AddProducts(getDriver());
         Assert.assertEquals(objAddProducts.getSuccessMsg(), arg0);
+    }
+    /**
+     *
+     * validate data with tabel
+     * */
+    @Given("^click on view all button$")
+    public void click_on_view_all_button() {
+        AddProducts objAddProducts = new AddProducts(getDriver());
+        objAddProducts.clickOnViewAllBtn();
+    }
+
+    @When("^open add product table$")
+    public void open_add_product_table(){
+         Assert.assertEquals(driver.getTitle(),"Admin Panel");
+    }
+
+    @Then("^validate product name as \"([^\"]*)\"$")
+    public void validate_product_name_as_test_Product(String productName) {
+        Assert.assertEquals(productName, TableEntry.getTableData(driver).get(2).get(2));
+    }
+
+    @Then("^validate old proce as \"([^\"]*)\"$")
+    public void validate_old_proce_as(String arg1){
+        Assert.assertEquals(arg1, TableEntry.getTableData(driver).get(2).get(3).toString().replace("$", ""));
+    }
+
+    @Then("^validate price as \"([^\"]*)\"$")
+    public void validate_price_as(String arg1){
+        Assert.assertEquals(arg1, TableEntry.getTableData(driver).get(2).get(4).toString().replace("$", ""));
+    }
+
+    @Then("^validate quantity as \"([^\"]*)\"$")
+    public void validate_quantity_as(String arg1) {
+        Assert.assertEquals(arg1, TableEntry.getTableData(driver).get(2).get(5));
+    }
+
+    @Then("^validate category as \"([^\"]*)\" as \"([^\"]*)\" as \"([^\"]*)\"$")
+    public void validate_category_as_as_as(String arg1, String arg2, String arg3){
+        Assert.assertTrue(TableEntry.getTableData(driver).get(2).get(8).toString().contains(arg1));
+        Assert.assertTrue(TableEntry.getTableData(driver).get(2).get(8).toString().contains(arg2));
+        Assert.assertTrue(TableEntry.getTableData(driver).get(2).get(8).toString().contains(arg3));
+    }
+
+    /**
+     * update the product
+     *
+     * */
+    @Given("^update product form should be open$")
+    public void update_product_form_should_be_open(){
+        AddProducts objAddProducts = new AddProducts(getDriver());
+        objAddProducts.clickOnEditBtn();
+    }
+    @When("^Scroll to update product button$")
+    public void scroll_to_update_product_button() {
+        AddProducts objAddProducts = new AddProducts(getDriver());
+        objAddProducts.scrolltoupdateProductEle();
+    }
+    @And("^Click on update product button only once$")
+    public void clickOnUpdateProductButtonOnlyOnce() {
+        AddProducts objAddProducts = new AddProducts(getDriver());
+        objAddProducts.clickOnUpdateBtn();
+    }
+
+    /**
+     * Delete add product
+     * **/
+    @Then("^click on delete button$")
+    public void click_on_delete_button() throws Throwable {
+        AddProducts objAddProducts = new AddProducts(getDriver());
+        objAddProducts.clickOnDeletebtn();
+    }
+
+    @Then("^display delete confirmation form$")
+    public void display_delete_confirmation_form() throws Throwable {
+        AddProducts objAddProducts = new AddProducts(getDriver());
+        objAddProducts.getDeleteConPopupModelTitle();
+    }
+
+    @Then("^validate delete confirmation title as \"([^\"]*)\"$")
+    public void validate_delete_confirmation_title_as(String arg1) throws Throwable {
+        AddProducts objAddProducts = new AddProducts(getDriver());
+        objAddProducts.getDeleteConPopupTitle();
+    }
+
+    @Then("^validate delete confirmation description as \"([^\"]*)\"$")
+    public void validate_delete_confirmation_description_as(String arg1) throws Throwable {
+        AddProducts objAddProducts = new AddProducts(getDriver());
+        objAddProducts.getDeleteConPopDesc();
+    }
+
+    @Then("^Click on delete button for confirmation form$")
+    public void click_on_delete_button_for_confirmation_form() throws Throwable {
+        AddProducts objAddProducts = new AddProducts(getDriver());
+        objAddProducts.clickOnDeletePopupBtn();
     }
 }
