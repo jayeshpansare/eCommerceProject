@@ -2,12 +2,15 @@ package pages;
 
 import lib.BrokenLinks;
 import lib.WaitAction;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.WindowType;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 public class HomePage {
     private final WebDriver driver;
     public HomePage(WebDriver driver) {
@@ -38,21 +41,19 @@ public class HomePage {
         objwait.expliciteWaitEleClickable(driver, 10, ele);
         ele.click();
     }
-    public void openNewTab(){
-        driver.switchTo().newWindow(WindowType.WINDOW);
-    }
-    public void openNewSite(String str){
-        driver.navigate().to(str);
-    }
     @FindBy(xpath = "//div[@class=\"tawk-text-truncate\"]")
     WebElement sendMsgTitle;
+    @FindBy(xpath = "//div[@class=\"widget-visible\"]/iframe[1]")
+    WebElement sendMsgIframe;
+    @FindBy(xpath = "//div[@class=\"widget-visible\"]/iframe[2]")
+    WebElement sendMsgBodyIframe;
+    @FindBy(xpath = "//div[@class=\"tawk-text-center\"]/div/div/div/p/span")
+    WebElement sendMsgDesc;
     public String getSendMsgSecTitle(){
-        try {
-            Thread.sleep(30);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(sendMsgIframe));
+        driver.switchTo().frame(sendMsgIframe);
+        wait.until(ExpectedConditions.elementToBeClickable(sendMsgTitle));
         return sendMsgTitle.getText();
     }
 
@@ -64,11 +65,13 @@ public class HomePage {
     @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[3]/fieldset/div/textarea")
     WebElement sendMsgtxtarea;
     public void sendMsgInpt(String txt) {
+        sendMsgtxtarea.clear();
         sendMsgtxtarea.sendKeys(txt);
     }
     @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[1]/fieldset/div/input")
     WebElement sendMsgName;
     public void sendNameInpt(String txt) {
+        sendMsgName.clear();
         sendMsgName.sendKeys(txt);
     }
     @FindBy(xpath = "//div[@class=\"tawk-form-footer\"]/button")
@@ -79,6 +82,9 @@ public class HomePage {
     @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[2]/fieldset/div/input")
     WebElement sendMsgEmail;
     public void sendEmailInpt(String txt) {
+    //    sendMsgEmail.clear();
+        sendMsgEmail.sendKeys(Keys.CONTROL + "a");
+        sendMsgEmail.sendKeys(Keys.DELETE);
         sendMsgEmail.sendKeys(txt);
     }
     @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[3]/fieldset/div/textarea/following-sibling::small")
@@ -98,11 +104,33 @@ public class HomePage {
     }
 
     public String getSendTitleBtn() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.elementToBeClickable(sendMsgSubmitBtn));
         return sendMsgSubmitBtn.getText();
     }
-    @FindBy(xpath = "//div[@class=\"tawk-text-center\"]/div/div/div/p/span")
-    WebElement sendMsgDesc;
+
     public String getSendMsgDesc() {
+        driver.switchTo().parentFrame();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOf(sendMsgBodyIframe));
+        driver.switchTo().frame(sendMsgBodyIframe);
+
+        wait.until(ExpectedConditions.visibilityOf(sendMsgDesc));
         return sendMsgDesc.getText();
+    }
+    @FindBy(className = "tawk-text-bold-1")
+    WebElement getSendMsgSuccessMsg;
+    public String getSuccessMsg() {
+        driver.switchTo().parentFrame();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOf(sendMsgBodyIframe));
+        driver.switchTo().frame(sendMsgBodyIframe);
+        wait.until(ExpectedConditions.visibilityOf(getSendMsgSuccessMsg));
+        return getSendMsgSuccessMsg.getText();
+    }
+    @FindBy(xpath = "//p[@class=\"tawk-text-bold-1\"]/following-sibling::button")
+    WebElement sendAgain;
+    public void sendAgainClk() {
+        sendAgain.click();
     }
 }

@@ -52,6 +52,7 @@ Feature: Validate home page
       | test@     | Invalid email address. |
       |test@gmail |Invalid email address.  |
       |157653152  | Invalid email address. |
+      | test124@yopmail.com|  Invalid email address. |
 
   @homepage
   Scenario Outline: validate send message with valid inputs
@@ -59,9 +60,10 @@ Feature: Validate home page
     When enter name input as "<nameInpt>"
     And enter email input as "<emailInpt>"
     And enter message input as "<msgInpt>"
-    Then display success message as "test"
     Then click on submit button
+    And display send message success message as "Your message was sent successfully!"
+    And click on send mesg submit button
     Examples:
       | nameInpt | emailInpt        | msgInpt                                                                                                                                                                                                                                                                                                                          |
-      | test     | test@gmail.com   | testmessage                                                                                                                                                                                                                                                                                                                      |
-      | test2    | test@yopmail.com | dasdasasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss |
+      | test     | test124@gmail.com   | testmessage                                                                                                                                                                                                                                                                                                                      |
+      | test2    | test124@gmail.com | dasdasasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss |

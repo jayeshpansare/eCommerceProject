@@ -47,6 +47,6 @@ public class BaseClass {
     }
     @AfterSuite
     public void tearDown(){
-//        driver.quit();
+        driver.quit();
     }
 }

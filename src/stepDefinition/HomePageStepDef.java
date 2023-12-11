@@ -7,6 +7,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import lib.BaseClass;
 import lib.BrokenLinks;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import pages.HomePage;
 
@@ -68,17 +70,17 @@ public class HomePageStepDef extends BaseClass {
         HomePage objHomePage = new HomePage(getDriver());
         objHomePage.linkClk(arg1);
     }
-    @Given("^open web site \"([^\"]*)\"$")
-    public void open_web_site(String arg1){
-        HomePage objSearchProduct = new HomePage(getDriver());
-        objSearchProduct.openNewTab();
-        objSearchProduct.openNewSite(arg1);
-    }
+//    @Given("^open web site \"([^\"]*)\"$")
+//    public void open_web_site(String arg1){
+//        HomePage objSearchProduct = new HomePage(getDriver());
+//        objSearchProduct.openNewTab();
+//        objSearchProduct.openNewSite(arg1);
+//    }
 
     @Given("^Send message section is available and title as \"([^\"]*)\"$")
     public void send_message_section_is_available_and_title_as(String arg1){
         HomePage objSearchProduct = new HomePage(getDriver());
-        Assert.assertEquals(arg1, objSearchProduct.getSendMsgSecTitle().trim());
+        Assert.assertEquals(arg1.trim(), objSearchProduct.getSendMsgSecTitle().trim());
     }
 
     @When("^Click on send message section$")
@@ -144,5 +146,17 @@ public class HomePageStepDef extends BaseClass {
     public void enter_message_input_as(String arg1){
         HomePage objSearchProduct = new HomePage(getDriver());
         objSearchProduct.sendMsgInpt(arg1);
+    }
+
+    @Then("^display send message success message as \"([^\"]*)\"$")
+    public void displaySendMessageSuccessMessageAs(String arg0) throws Throwable {
+        HomePage objSearchProduct = new HomePage(getDriver());
+        objSearchProduct.getSuccessMsg();
+    }
+
+    @Then("^click on send mesg submit button$")
+    public void clickOnSendMesgSubmitButton() {
+        HomePage objSearchProduct = new HomePage(getDriver());
+        objSearchProduct.sendAgainClk();
     }
 }

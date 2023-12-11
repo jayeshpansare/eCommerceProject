@@ -118,7 +118,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <projectName>CredaHealthWebPagesAutomation</projectName>
+                            <projectName>ecommerceAutomation</projectName>
                             <skip>false</skip>
                             <outputDirectory>target/cucumber-reports</outputDirectory>
                             <inputDirectory>target/cucumber-reports</inputDirectory>
