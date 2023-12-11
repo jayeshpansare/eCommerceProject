@@ -1,5 +1,6 @@
 package lib;
 
+import gherkin.lexer.Tr;
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -31,5 +32,27 @@ public class BrokenLinks {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+    public static boolean BrokenLink(WebDriver driver, String linkURL) {
+
+        boolean flag = true;
+        try {
+            flag = true;
+            String getURL = linkURL;
+            URL url = new URL(getURL);
+            HttpURLConnection ht = (HttpURLConnection) url.openConnection();
+            ht.connect();
+            int getResponseCode = ht.getResponseCode();
+            if (getResponseCode >= 400) {
+                flag = false;
+                System.out.println(getURL + " Is a broken link");
+            } else {
+                flag = true;
+//              System.out.println(getURL + " Is not broken link");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return flag;
     }
 }
