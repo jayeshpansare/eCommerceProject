@@ -23,6 +23,48 @@ Feature: Validate home page
     Then back to home page
 
   @homepage
+  Scenario Outline: validate search with invalid data
+  Given search input must be available
+  When user enter invalid input as "<invalidInpt>"
+  And click on search submit button
+  Then display an search error message as "<error>"
+  Examples:
+  |invalidInpt|error|
+  |test555       | No result found|
+  |2312321    | No result found|
+
+  @homepage
+  Scenario Outline: validate search with valid data
+    Given search input must be available
+    When user enter valid input as "<productname>"
+    And click on search submit button
+    Then display product as "<displayproductname>"
+    Then back to home page
+    Examples:
+      |productname|displayproductname|
+      |Men's Soft Classic Sneaker|Men's Soft Classic Sneaker|
+      |Men's|Men's Soft Classic Sneaker                     |
+      |Men's|Men's Long Cuffed Jogger Yoga Sweat Pant    |
+
+  @homepage
+  Scenario Outline: validate feature products slider
+  Given feature products section must be available "<featureTitle>"
+  When fetaure products desc must be available "<featureDesc>"
+  Then display list of products "<featureProdList>"
+  Examples:
+  |featureTitle|featureDesc|featureProdList|
+  |FEATURED PRODUCTS|Our list on Top Featured Products|Amazfit GTS 3 Smart Watch for Android iPhone#Men's Loose Fit Heavyweight Long-Sleeve Pocket T-Shirt#Women's Tea Length Dress with Rosette Detail (Petite & Regular)|
+
+  @homepage
+  Scenario Outline: validate latest products slider
+    Given latest products section must be available "<latestTitle>"
+    When latest products desc must be available "<latestDesc>"
+    Then display list of latest products as "<latestProdList>"
+    Examples:
+      |latestTitle|latestDesc|latestProdList|
+      |LATEST PRODUCTS|Our list of recently added products|Women's Plus-Size Shirt Dress with Gold Hardware#Digital Infrared Thermometer for Adults and Kids#Men's Long Cuffed Jogger Yoga Sweat Pant|
+
+  @homepage
   Scenario: validate send message UI part
     Given Send message section is available and title as " Send message "
     When Click on send message section
@@ -52,6 +94,7 @@ Feature: Validate home page
       | test@     | Invalid email address. |
       |test@gmail |Invalid email address.  |
       |157653152  | Invalid email address. |
+      | test124@yopmail.com|  Invalid email address. |
 
   @homepage
   Scenario Outline: validate send message with valid inputs
@@ -59,9 +102,10 @@ Feature: Validate home page
     When enter name input as "<nameInpt>"
     And enter email input as "<emailInpt>"
     And enter message input as "<msgInpt>"
-    Then display success message as "test"
     Then click on submit button
+    And display send message success message as "Your message was sent successfully!"
+    And click on send mesg submit button
     Examples:
       | nameInpt | emailInpt        | msgInpt                                                                                                                                                                                                                                                                                                                          |
-      | test     | test@gmail.com   | testmessage                                                                                                                                                                                                                                                                                                                      |
-      | test2    | test@yopmail.com | dasdasasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss |
+      | test     | test124@gmail.com   | testmessage                                                                                                                                                                                                                                                                                                                      |
+      | test2    | test124@gmail.com | dasdasasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss |
