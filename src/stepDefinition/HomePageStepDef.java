@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages.HomePage;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class HomePageStepDef extends BaseClass {
@@ -219,16 +220,27 @@ public class HomePageStepDef extends BaseClass {
     @Then("^display list of products \"([^\"]*)\"$")
     public void displayListOfProducts(String arg0){
         String[] getprods = arg0.split("#");
-        HashSet set = new HashSet<>();
-        if(!objHomePage.getListOfFetProd().isEmpty()){
-            for (WebElement getEle : objHomePage.getListOfFetProd()){
-                set.add(getEle.getText());
-            }
-        }
-        System.out.println(getprods);
+        ArrayList<String> set= new ArrayList<>();
         for (String getprod:getprods){
-            System.out.println(getprod);
-             Assert.assertTrue(set.contains(getprod));
+             Assert.assertTrue(objHomePage.getListOfFetProd().contains(getprod));
+        }
+    }
+
+    @Given("^latest products section must be available \"([^\"]*)\"$")
+    public void latestProductsSectionMustBeAvailable(String arg0){
+        Assert.assertEquals(arg0, objHomePage.getLetProdTitle());
+    }
+
+    @When("^latest products desc must be available \"([^\"]*)\"$")
+    public void latestProductsDescMustBeAvailable(String arg0){
+        objHomePage.getLatProdDesc();
+    }
+
+    @Then("^display list of latest products as \"([^\"]*)\"$")
+    public void displayListOfLatestProductsAs(String arg0){
+        String[] getprods = arg0.split("#");
+        for (String getprod:getprods){
+            Assert.assertTrue(objHomePage.getListOfLatProd().contains(getprod));
         }
     }
 }

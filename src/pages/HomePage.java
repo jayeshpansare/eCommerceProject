@@ -3,13 +3,16 @@ package pages;
 import lib.BrokenLinks;
 import lib.WaitAction;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.swing.*;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -173,8 +176,39 @@ public class HomePage {
         return getfetProdDesc.getText();
     }
 
-    public List<WebElement> getListOfFetProd() {
+    public List<String> getListOfFetProd() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(getFetProdTitle));
+        Actions obj = new Actions(driver);
+        obj.moveToElement(getFetProdTitle).build().perform();
+        ArrayList<String> fetaureData = new ArrayList<>();
        List<WebElement> getEle = driver.findElements(By.xpath("//h2[text()=\"Featured Products\"]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div/div/div/div/div[2]/h3/a"));
-        return getEle;
+        for (WebElement getEles : getEle){
+            fetaureData.add(getEles.getAttribute("innerText"));
+        }
+       return fetaureData;
+    }
+    @FindBy(xpath = "//h2[text()=\"Latest Products\"]")
+    WebElement getLetProdTitle;
+    public String getLetProdTitle() {
+        return getLetProdTitle.getText();
+    }
+    @FindBy(xpath = "//h2[text()=\"Latest Products\"]/following-sibling::h3")
+    WebElement getLetProdDesc;
+    public String getLatProdDesc() {
+        return getLetProdDesc.getText();
+    }
+
+    public List<String> getListOfLatProd() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(getLetProdTitle));
+        Actions obj = new Actions(driver);
+        obj.moveToElement(getLetProdTitle).build().perform();
+        ArrayList<String> latestData = new ArrayList<>();
+            List<WebElement> getEle= driver.findElements(By.xpath("//h2[text()=\"Latest Products\"]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div/div/div/div/div[2]/h3/a"));
+            for (WebElement getEles : getEle){
+                latestData.add(getEles.getAttribute("innerText"));
+            }
+            return latestData;
     }
 }
