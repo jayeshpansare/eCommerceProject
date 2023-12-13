@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.HashSet;
+import java.util.List;
 
 public class HomePage {
     private final WebDriver driver;
@@ -130,7 +132,49 @@ public class HomePage {
     }
     @FindBy(xpath = "//p[@class=\"tawk-text-bold-1\"]/following-sibling::button")
     WebElement sendAgain;
+    @FindBy(name = "search_text")
+    WebElement searchInpt;
+
     public void sendAgainClk() {
         sendAgain.click();
+    }
+    @FindBy(xpath = "//span[text()=\"No result found\"]")
+    WebElement getSearchErrorMsg;
+    public String getSearchProdErrorMsg() {
+        return getSearchErrorMsg.getText();
+    }
+    @FindBy(xpath = "//input[@name=\"search_text\"]/parent::div/following-sibling::button")
+    WebElement searchBtn;
+
+    public void searchClk() {
+        searchBtn.click();
+    }
+
+    public void sendSearchinpt(String arg1) {
+        searchInpt.sendKeys(arg1);
+    }
+
+    public String getSearchPlaceHolder() {
+        return searchInpt.getAttribute("placeholder");
+    }
+
+    public List<WebElement> getListOfSearchProd() {
+        List<WebElement> getListOfprods = driver.findElements(By.xpath("//div[@class=\"page\"]/div/div/div/div/div/div/div/div[2]/h3/a"));
+        return getListOfprods;
+    }
+    @FindBy(xpath = "//h2[text()=\"Featured Products\"]")
+    WebElement getFetProdTitle;
+    public String getFetProdTitle() {
+        return getFetProdTitle.getText();
+    }
+    @FindBy(xpath = "//h2[text()=\"Featured Products\"]/following-sibling::h3")
+    WebElement getfetProdDesc;
+    public String getFetProdDesc() {
+        return getfetProdDesc.getText();
+    }
+
+    public List<WebElement> getListOfFetProd() {
+       List<WebElement> getEle = driver.findElements(By.xpath("//h2[text()=\"Featured Products\"]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div/div/div/div/div[2]/h3/a"));
+        return getEle;
     }
 }
