@@ -23,14 +23,14 @@ public class BaseClass {
 //        WebDriverManager.firefoxdriver().setup();
 //        driver = new FirefoxDriver();
         WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.getBrowserName();
-        options.getBrowserVersion();
-//        options.addArguments("--headless");
-        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-        options.addArguments("--incognito");
-
-        driver = new ChromeDriver(options);
+//        ChromeOptions options = new ChromeOptions();
+//        options.getBrowserName();
+//        options.getBrowserVersion();
+////        options.addArguments("--headless");
+//        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+//        options.addArguments("--incognito");
+//
+        driver = new ChromeDriver();
         driver.get(webURL);
         driver.manage().window().maximize();
     }
