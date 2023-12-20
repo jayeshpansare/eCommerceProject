@@ -23,7 +23,7 @@ Feature: Validate contact us page
   Scenario Outline:
     Given contact us form must be available
     When click on send message button
-#    Then display message as "<msg>"
+    Then display message as "<msg>"
     Examples:
       |msg|
       |Please enter your name.#Please enter your phone number.#Please enter your email address.#Please enter your message.  |

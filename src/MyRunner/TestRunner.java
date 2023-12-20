@@ -11,9 +11,9 @@ import java.io.IOException;
 @CucumberOptions(
         features = "src/features",
         glue = {"stepDefinition"},
-        tags = {"@DryRun"},
+        tags = {"@smoke"},
         plugin = {"pretty",
-                "html:target/cucumber-reports/cucumber.html",
+                "html:target/cucumber-reports/cucumber",
                 "json:target/cucumber-reports/cucumber.json"
         })
 public class TestRunner extends AbstractTestNGCucumberTests{

@@ -5,13 +5,14 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import lib.BaseClass;
+import org.testng.Assert;
 import pages.ContactusPage;
 
 public class ContactUsStepDef extends BaseClass {
     ContactusPage objContactUs = new ContactusPage(getDriver());
     @Given("^validate contact us menu must be available as \"([^\"]*)\"$")
     public void validateContactUsMenuMustBeAvailableAs(String arg0){
-        objContactUs.getContactUsMenuName();
+        Assert.assertEquals(objContactUs.getContactUsMenuName(), arg0);
     }
 
     @Given("^click on contact us menu$")
@@ -21,20 +22,20 @@ public class ContactUsStepDef extends BaseClass {
 
     @When("^validate contact us header as \"([^\"]*)\"$")
     public void validate_contact_us_header_as(String arg1){
-        objContactUs.getContctUsHeaderTxt();
+        Assert.assertEquals(objContactUs.getContctUsHeaderTxt(), arg1);
     }
 
     @Then("^validate contact form header as \"([^\"]*)\"$")
     public void validate_contact_form_header_as(String arg1){
-        objContactUs.getContactUsFormTxt();
+        Assert.assertEquals(objContactUs.getContactUsFormTxt(), arg1);
     }
 
     @Then("^validate form label as \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\" and \"([^\"]*)\"$")
     public void validate_form_label_as_and_and_and(String arg1, String arg2, String arg3, String arg4){
-        objContactUs.getNameLabel();
-        objContactUs.getEmailLabel();
-        objContactUs.getPhoneNumberLabel();
-        objContactUs.getMegLabel();
+        Assert.assertEquals(objContactUs.getNameLabel(), arg1);
+        Assert.assertEquals(objContactUs.getEmailLabel(), arg2);
+        Assert.assertEquals(objContactUs.getPhoneNumberLabel(), arg3);
+        Assert.assertEquals(objContactUs.getMegLabel(), arg4);
     }
 
     @Then("^validate address as \"([^\"]*)\"$")
@@ -44,12 +45,12 @@ public class ContactUsStepDef extends BaseClass {
 
     @Then("^validate phone number as \"([^\"]*)\"$")
     public void validate_phone_number_as(String arg1){
-        objContactUs.getPhoneNumberTxt();
+        Assert.assertEquals(objContactUs.getPhoneNumberTxt(), arg1);
     }
 
     @Then("^validate email as \"([^\"]*)\"$")
     public void validate_email_as(String arg1){
-        objContactUs.getEmailTxt();
+        Assert.assertEquals(objContactUs.getEmailTxt(), arg1);
     }
     @Given("^contact us form must be available$")
     public void contact_us_form_must_be_available(){
@@ -62,8 +63,8 @@ public class ContactUsStepDef extends BaseClass {
     }
 
     @When("^user enter Name as \"([^\"]*)\"$")
-    public void user_enter_Name_as(String arg1){
-        driver.switchTo().alert().accept();
+    public void user_enter_Name_as(String arg1) throws InterruptedException {
+        Thread.sleep(200);
         objContactUs.nameSendInput(arg1);
     }
 
@@ -84,6 +85,7 @@ public class ContactUsStepDef extends BaseClass {
 
     @Then("^display message as \"([^\"]*)\"$")
     public void display_message_as(String arg1){
-        System.out.println(objContactUs.getMessages());
+        objContactUs.getMessages();
+//        Assert.assertEquals(objContactUs.getMessages(), arg1);
     }
 }
