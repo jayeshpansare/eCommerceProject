@@ -1,5 +1,6 @@
 package pages;
 
+import gherkin.lexer.Th;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
@@ -43,8 +44,8 @@ public class ContactusPage {
             @FindBy(xpath = "//div[@class=\"page-banner\"]/div/h1")
     })
     WebElement contactForm;
-    public void getContactUsFormTxt() {
-        contactForm.getText();
+    public String getContactUsFormTxt() {
+        return contactForm.getText();
     }
     @FindBy(xpath = "//input[@name=\"visitor_name\"]/preceding-sibling::label")
     WebElement nameLabel;
@@ -88,26 +89,24 @@ public class ContactusPage {
     }
 
     public String getMessages() {
-        System.out.println("Test test");
         String msg = "";
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             wait.until(ExpectedConditions.alertIsPresent());
             Alert alt = driver.switchTo().alert();
             msg = alt.getText();
+            Thread.sleep(200);
             alt.accept();
-
-        }catch (UnhandledAlertException e){
-            System.out.println(e.getMessage());
+            Thread.sleep(500);
+        }catch (UnhandledAlertException | InterruptedException e){
+            throw  new RuntimeException(e);
         }
-        System.out.println("test");
         return msg;
     }
     @FindBy(xpath = "//input[@name=\"visitor_name\"]")
     WebElement nameInpt;
     public void nameSendInput(String arg1) {
-        driver.switchTo().alert().accept();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(nameInpt));
         nameInpt.sendKeys(arg1);
     }
