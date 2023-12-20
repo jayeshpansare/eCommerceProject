@@ -20,17 +20,17 @@ public class BaseClass {
     @BeforeSuite
     public void initBrowser() throws IOException {
         String webURL = readProperty().getProperty("URL");
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
-//        WebDriverManager.chromedriver().setup();
-//        ChromeOptions options = new ChromeOptions();
+//        WebDriverManager.firefoxdriver().setup();
+//        driver = new FirefoxDriver();
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
 //        options.getBrowserName();
 //        options.getBrowserVersion();
 ////        options.addArguments("--headless");
 //        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
 //        options.addArguments("--incognito");
 //
-//        driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.get(webURL);
         driver.manage().window().maximize();
     }

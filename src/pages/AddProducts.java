@@ -76,7 +76,6 @@ public class AddProducts {
 
     public List<WebElement> getListOfMidLevelCat() {
         String gettopLvlRes = topLevelddlres.getAttribute("aria-owns");
-        System.out.println(gettopLvlRes);
         List<WebElement> MidLevelCatddl = driver.findElements(By.id(gettopLvlRes));
         return MidLevelCatddl;
     }
