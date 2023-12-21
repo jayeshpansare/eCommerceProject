@@ -7,6 +7,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import lib.BaseClass;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages.category;
 
@@ -39,5 +40,27 @@ public class CategoryPages extends BaseClass {
         String[] getSubCatArray= arg2.split("#");
         List<String> getCatArray = new ArrayList<>(Arrays.asList(getSubCatArray));
         Assert.assertTrue(objCat.getSubMenus(arg0, arg1).containsAll(getCatArray));
+    }
+
+    @When("^user click on \"([^\"]*)\" category$")
+    public void userClickOnCategory(String arg0){
+        objCat.catClick(arg0);
+    }
+
+    @Then("^validate category product name as \"([^\"]*)\"$")
+    public void validateCategoryProductNameAs(String arg0){
+        List<String> getProArray = Arrays.asList(arg0.split("#"));
+        System.out.println(objCat.getListOfProd());
+        Assert.assertTrue(objCat.getListOfProd().containsAll(getProArray));
+    }
+
+    @When("^user click on \"([^\"]*)\" category and \"([^\"]*)\" sub category$")
+    public void userClickOnCategoryAndSubCategory(String arg0, String arg1){
+        objCat.catClick(arg0, arg1);
+    }
+
+    @When("^user click on \"([^\"]*)\" category and \"([^\"]*)\" sub category and \"([^\"]*)\" sub category$")
+    public void userClickOnCategoryAndSubCategoryAndSubCategory(String arg0, String arg1, String arg2) throws Throwable {
+        objCat.catClick(arg0, arg1, arg2);
     }
 }

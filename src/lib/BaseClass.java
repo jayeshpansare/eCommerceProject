@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+//import org.testng.annotations.AfterSuite;
+//import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
 import java.io.FileInputStream;
