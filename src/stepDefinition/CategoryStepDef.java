@@ -1,13 +1,10 @@
 package stepDefinition;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import lib.BaseClass;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages.category;
 
@@ -15,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CategoryPages extends BaseClass {
+public class CategoryStepDef extends BaseClass {
     category objCat = new category(getDriver());
     @Given("^home page is available \"([^\"]*)\"$")
     public void homePageIsAvailable(String arg0){

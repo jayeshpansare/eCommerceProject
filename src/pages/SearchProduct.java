@@ -16,7 +16,10 @@ public class SearchProduct {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
+    @FindBy(xpath = "//*[text()=\"test product\"]")
+    WebElement productName;
+    @FindBy(xpath = "//*[text()=\"test product\"]/parent::h3/following-sibling::h4")
+    WebElement price;
     public void openNewTab() {
         driver.switchTo().newWindow(WindowType.WINDOW);
     }
@@ -41,13 +44,11 @@ public class SearchProduct {
         obj.moveToElement(ele).build().perform();
         obj.click(ele).build().perform();
     }
-    @FindBy(xpath = "//*[text()=\"test product\"]")
-    WebElement productName;
+
     public String getProductName() {
         return productName.getText().trim();
     }
-    @FindBy(xpath = "//*[text()=\"test product\"]/parent::h3/following-sibling::h4")
-    WebElement price;
+
     public String getProductPrice() {
         String getPrice = price.getText().trim();
         String getNum = getPrice.replace("$", "");

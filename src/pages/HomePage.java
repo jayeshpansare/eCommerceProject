@@ -24,14 +24,58 @@ public class HomePage {
     }
     @FindBy(xpath = "//div[@class=\"page-banner\"]/div/h1")
     WebElement getHomePageBanner;
+    @FindBy(xpath = "//img[@alt=\"logo image\"]")
+    WebElement getLogoLink;
+    @FindBy(xpath = "//div[@class=\"tawk-text-truncate\"]")
+    WebElement sendMsgTitle;
+    @FindBy(xpath = "//div[@class=\"widget-visible\"]/iframe[1]")
+    WebElement sendMsgIframe;
+    @FindBy(xpath = "//div[@class=\"widget-visible\"]/iframe[2]")
+    WebElement sendMsgBodyIframe;
+    @FindBy(xpath = "//div[@class=\"tawk-text-center\"]/div/div/div/p/span")
+    WebElement sendMsgDesc;
+    @FindBy(xpath = "//p[@class=\"tawk-text-bold-1\"]/following-sibling::button")
+    WebElement sendAgain;
+    @FindBy(name = "search_text")
+    WebElement searchInpt;
+    @FindBy(xpath = "//span[text()=\"No result found\"]")
+    WebElement getSearchErrorMsg;
+    public String getSearchProdErrorMsg() {
+        return getSearchErrorMsg.getText();
+    }
+    @FindBy(xpath = "//input[@name=\"search_text\"]/parent::div/following-sibling::button")
+    WebElement searchBtn;
+    @FindBy(xpath = "//h2[text()=\"Featured Products\"]")
+    WebElement getFetProdTitle;
+    @FindBy(xpath = "//h2[text()=\"Featured Products\"]/following-sibling::h3")
+    WebElement getfetProdDesc;
+    @FindBy(xpath = "//h2[text()=\"Latest Products\"]")
+    WebElement getLetProdTitle;
+    @FindBy(xpath = "//h2[text()=\"Latest Products\"]/following-sibling::h3")
+    WebElement getLetProdDesc;
+    @FindBy(xpath = "//div[@class=\"tawk-form-footer\"]/button")
+    WebElement sendMsgSubmitBtn;
+    @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[2]/fieldset/div/input")
+    WebElement sendMsgEmail;
+    @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[3]/fieldset/div/textarea/following-sibling::small")
+    WebElement msgError;
+    @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[2]/fieldset/div/input/following-sibling::small")
+    WebElement emailError;
+    @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[1]/fieldset/div/input/following-sibling::small")
+    WebElement nameError;
+    @FindBy(className = "tawk-text-bold-1")
+    WebElement getSendMsgSuccessMsg;
+    @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[3]/fieldset/div/textarea")
+    WebElement sendMsgtxtarea;
+    @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[1]/fieldset/div/input")
+    WebElement sendMsgName;
     public String getLoginTitle() {
         return getHomePageBanner.getText();
     }
 
     public void registrationLink() {
     }
-    @FindBy(xpath = "//img[@alt=\"logo image\"]")
-    WebElement getLogoLink;
+
     public Boolean chkLogo() {
         return BrokenLinks.BrokenLink(driver, getLogoLink.getAttribute("src"));
     }
@@ -46,14 +90,7 @@ public class HomePage {
         objwait.expliciteWaitEleClickable(driver, 10, ele);
         ele.click();
     }
-    @FindBy(xpath = "//div[@class=\"tawk-text-truncate\"]")
-    WebElement sendMsgTitle;
-    @FindBy(xpath = "//div[@class=\"widget-visible\"]/iframe[1]")
-    WebElement sendMsgIframe;
-    @FindBy(xpath = "//div[@class=\"widget-visible\"]/iframe[2]")
-    WebElement sendMsgBodyIframe;
-    @FindBy(xpath = "//div[@class=\"tawk-text-center\"]/div/div/div/p/span")
-    WebElement sendMsgDesc;
+
     public String getSendMsgSecTitle(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(sendMsgIframe));
@@ -67,43 +104,36 @@ public class HomePage {
         objWaitAction.expliciteWaitEleClickable(driver, 10, sendMsgTitle);
         sendMsgTitle.click();
     }
-    @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[3]/fieldset/div/textarea")
-    WebElement sendMsgtxtarea;
+
     public void sendMsgInpt(String txt) {
         sendMsgtxtarea.clear();
         sendMsgtxtarea.sendKeys(txt);
     }
-    @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[1]/fieldset/div/input")
-    WebElement sendMsgName;
+
     public void sendNameInpt(String txt) {
         sendMsgName.clear();
         sendMsgName.sendKeys(txt);
     }
-    @FindBy(xpath = "//div[@class=\"tawk-form-footer\"]/button")
-    WebElement sendMsgSubmitBtn;
+
     public void submitBtnClk() {
         sendMsgSubmitBtn.click();
     }
-    @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[2]/fieldset/div/input")
-    WebElement sendMsgEmail;
+
     public void sendEmailInpt(String txt) {
     //    sendMsgEmail.clear();
         sendMsgEmail.sendKeys(Keys.CONTROL + "a");
         sendMsgEmail.sendKeys(Keys.DELETE);
         sendMsgEmail.sendKeys(txt);
     }
-    @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[3]/fieldset/div/textarea/following-sibling::small")
-    WebElement msgError;
+
     public String getErrorMessag() {
         return msgError.getText();
     }
-    @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[2]/fieldset/div/input/following-sibling::small")
-    WebElement emailError;
+
     public String getErrorEmail() {
         return emailError.getText();
     }
-    @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[1]/fieldset/div/input/following-sibling::small")
-    WebElement nameError;
+
     public String getErrorName() {
         return nameError.getText();
     }
@@ -123,8 +153,7 @@ public class HomePage {
         wait.until(ExpectedConditions.visibilityOf(sendMsgDesc));
         return sendMsgDesc.getText();
     }
-    @FindBy(className = "tawk-text-bold-1")
-    WebElement getSendMsgSuccessMsg;
+
     public String getSuccessMsg() {
         driver.switchTo().parentFrame();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -133,21 +162,10 @@ public class HomePage {
         wait.until(ExpectedConditions.visibilityOf(getSendMsgSuccessMsg));
         return getSendMsgSuccessMsg.getText();
     }
-    @FindBy(xpath = "//p[@class=\"tawk-text-bold-1\"]/following-sibling::button")
-    WebElement sendAgain;
-    @FindBy(name = "search_text")
-    WebElement searchInpt;
 
     public void sendAgainClk() {
         sendAgain.click();
     }
-    @FindBy(xpath = "//span[text()=\"No result found\"]")
-    WebElement getSearchErrorMsg;
-    public String getSearchProdErrorMsg() {
-        return getSearchErrorMsg.getText();
-    }
-    @FindBy(xpath = "//input[@name=\"search_text\"]/parent::div/following-sibling::button")
-    WebElement searchBtn;
 
     public void searchClk() {
         searchBtn.click();
@@ -165,13 +183,11 @@ public class HomePage {
         List<WebElement> getListOfprods = driver.findElements(By.xpath("//div[@class=\"page\"]/div/div/div/div/div/div/div/div[2]/h3/a"));
         return getListOfprods;
     }
-    @FindBy(xpath = "//h2[text()=\"Featured Products\"]")
-    WebElement getFetProdTitle;
+
     public String getFetProdTitle() {
         return getFetProdTitle.getText();
     }
-    @FindBy(xpath = "//h2[text()=\"Featured Products\"]/following-sibling::h3")
-    WebElement getfetProdDesc;
+
     public String getFetProdDesc() {
         return getfetProdDesc.getText();
     }
@@ -188,13 +204,11 @@ public class HomePage {
         }
        return fetaureData;
     }
-    @FindBy(xpath = "//h2[text()=\"Latest Products\"]")
-    WebElement getLetProdTitle;
+
     public String getLetProdTitle() {
         return getLetProdTitle.getText();
     }
-    @FindBy(xpath = "//h2[text()=\"Latest Products\"]/following-sibling::h3")
-    WebElement getLetProdDesc;
+
     public String getLatProdDesc() {
         return getLetProdDesc.getText();
     }

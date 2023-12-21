@@ -17,6 +17,10 @@ public class category {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+    @FindBy(xpath = "//div[@class=\"text\"]/h3/a")
+    List<WebElement> listOfProd;
+    @FindBy(className = "pl_15")
+    WebElement getProdErrorMsg;
 
     public String getMenu(String arg1) {
         return driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\""+arg1+"\"]")).getText();
@@ -67,10 +71,7 @@ public class category {
         action.moveToElement(ele).build().perform();
         action.click(subele).build().perform();
     }
-    @FindBy(xpath = "//div[@class=\"text\"]/h3/a")
-    List<WebElement> listOfProd;
-    @FindBy(className = "pl_15")
-    WebElement getProdErrorMsg;
+
     public HashSet<String> getListOfProd() {
         HashSet<String> listOfMenu =  new HashSet<>();
         if(listOfProd.size()>0){
