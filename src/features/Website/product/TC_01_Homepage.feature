@@ -9,7 +9,7 @@
 
 Feature: Validate home page
   As a user can validate home page info
-  @homepage @DryRun @category @AddProduct
+  @homepage @smoke @FAQ
   Scenario: validate home info with its sliders
     Given open web site "https://wonske.com/anandtech/"
     When home page logo is available
@@ -22,7 +22,7 @@ Feature: Validate home page
     And validate registartion page title as "Customer Registration"
     Then back to home page
 
-  @homepage
+  @homepage @smoke
   Scenario Outline: validate search with invalid data
   Given search input must be available
   When user enter invalid input as "<invalidInpt>"
@@ -33,7 +33,7 @@ Feature: Validate home page
   |test555       | No result found|
   |2312321    | No result found|
 
-  @homepage
+  @homepage @smoke
   Scenario Outline: validate search with valid data
     Given search input must be available
     When user enter valid input as "<productname>"
@@ -46,7 +46,7 @@ Feature: Validate home page
       |Men's|Men's Soft Classic Sneaker                     |
       |Men's|Men's Long Cuffed Jogger Yoga Sweat Pant    |
 
-  @homepage
+  @homepage @smoke
   Scenario Outline: validate feature products slider
   Given feature products section must be available "<featureTitle>"
   When fetaure products desc must be available "<featureDesc>"
@@ -55,7 +55,7 @@ Feature: Validate home page
   |featureTitle|featureDesc|featureProdList|
   |FEATURED PRODUCTS|Our list on Top Featured Products|Amazfit GTS 3 Smart Watch for Android iPhone#Men's Loose Fit Heavyweight Long-Sleeve Pocket T-Shirt#Women's Tea Length Dress with Rosette Detail (Petite & Regular)|
 
-  @homepage
+  @homepage @smoke
   Scenario Outline: validate latest products slider
     Given latest products section must be available "<latestTitle>"
     When latest products desc must be available "<latestDesc>"
@@ -64,14 +64,14 @@ Feature: Validate home page
       |latestTitle|latestDesc|latestProdList|
       |LATEST PRODUCTS|Our list of recently added products|Women's Plus-Size Shirt Dress with Gold Hardware#Digital Infrared Thermometer for Adults and Kids#Men's Long Cuffed Jogger Yoga Sweat Pant|
 
-  @homepage
+  @homepage @smoke
   Scenario: validate send message UI part
     Given Send message section is available and title as " Send message "
     When Click on send message section
     Then validate description on send message section as "Please fill out the form below and we will get back to you as soon as possible."
     Then validate send message button as " Submit "
 
-  @homepage
+  @homepage @smoke
   Scenario Outline: validate send message with invalid inputs
     Given send message section is open
     When click on submit button
@@ -82,7 +82,7 @@ Feature: Validate home page
       | nameErr                   | emailErr | messageErr |  |
       | This field is required | This field is required | This field is required | |
 
-  @homepage
+  @homepage @smoke
   Scenario Outline: validate send message email input with invalid data
     Given send message section is open
     When enter email input as "<emailInpt>"
@@ -96,7 +96,7 @@ Feature: Validate home page
       |157653152  | Invalid email address. |
       | test124@yopmail.com|  Invalid email address. |
 
-  @homepage
+  @homepage @smoke
   Scenario Outline: validate send message with valid inputs
     Given send message section is open
     When enter name input as "<nameInpt>"
@@ -105,7 +105,14 @@ Feature: Validate home page
     Then click on submit button
     And display send message success message as "Your message was sent successfully!"
     And click on send mesg submit button
+
     Examples:
       | nameInpt | emailInpt        | msgInpt                                                                                                                                                                                                                                                                                                                          |
       | test     | test124@gmail.com   | testmessage                                                                                                                                                                                                                                                                                                                      |
       | test2    | test124@gmail.com | dasdasasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss |
+
+  @homepage @smoke
+  Scenario:
+    Given send message section is open
+    Then back to main page from iframe
+    And back to home page

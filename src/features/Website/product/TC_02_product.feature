@@ -10,7 +10,7 @@
 Feature: Validate product page
   As a user we can validate multiple product according to sub menu.
 
-  @AddProduct
+  @AddProduct @smoke
   Scenario Outline: validate product according to its main and sub menu
     Given home page is available "Ecommerce PHP"
     And over on main menu "<mainmenu>"
@@ -21,7 +21,7 @@ Feature: Validate product page
       | mainmenu    | submenu               | productname | price |  |
       | Electronics | Computers and Tablets |test product |40     |  |
 
-    @AddProduct
+    @AddProduct @smoke
     Scenario Outline: validate add product page
       user can validate product name, description, product desc, feature, condition, return policy
       Given home page is available "Ecommerce PHP"
@@ -32,7 +32,7 @@ Feature: Validate product page
       |cat|subcat1|subcat2|productname|desc|productdesc|feature|condition|returnpolicy|
       | Men | Men Accessories |Watches |Amazfit GTS 3 Smart Watch for Android iPhone | Alexa Built-in, GPS Fitness Sports Watch with 150 Sports Modes| test| test| test|test|
 
-      @AddProduct
+      @AddProduct @smoke
       Scenario: validate add product
       user can select size, color and quantity and add product in cart
         Given home page is available "Ecommerce PHP"

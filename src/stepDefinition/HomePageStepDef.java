@@ -6,6 +6,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import lib.BaseClass;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages.HomePage;
@@ -216,5 +217,11 @@ public class HomePageStepDef extends BaseClass {
         for (String getprod:getprods){
             Assert.assertTrue(objHomePage.getListOfLatProd().contains(getprod));
         }
+    }
+
+    @And("^back to main page from iframe$")
+    public void backToMainPageFromIframe() {
+        getDriver().findElement(By.xpath("//button[@data-text=\"Minimize\"]")).click();
+        getDriver().switchTo().defaultContent();
     }
 }

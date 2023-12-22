@@ -9,9 +9,9 @@ import org.testng.annotations.BeforeSuite;
 import java.io.IOException;
 
 @CucumberOptions(
-        features = "src/features",
+        features = {"src/features"},
         glue = {"stepDefinition"},
-        tags = {"@AddProduct"},
+        tags = {"@FAQ"},
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber",
                 "json:target/cucumber-reports/cucumber.json"

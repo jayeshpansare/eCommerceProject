@@ -47,7 +47,6 @@ public class CategoryStepDef extends BaseClass {
     @Then("^validate category product name as \"([^\"]*)\"$")
     public void validateCategoryProductNameAs(String arg0){
         List<String> getProArray = Arrays.asList(arg0.split("#"));
-        System.out.println(objCat.getListOfProd());
         Assert.assertTrue(objCat.getListOfProd().containsAll(getProArray));
     }
 
