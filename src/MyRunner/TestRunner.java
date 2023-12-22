@@ -11,7 +11,7 @@ import java.io.IOException;
 @CucumberOptions(
         features = {"src/features"},
         glue = {"stepDefinition"},
-        tags = {"@Aboutus"},
+        tags = {"@login"},
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber",
                 "json:target/cucumber-reports/cucumber.json"

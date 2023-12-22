@@ -10,7 +10,7 @@
 Feature: Validate home page
   As a user can validate home page info
 
-  @homepage @smoke @Aboutus
+  @homepage @smoke @login
   Scenario: validate home info with its sliders
     Given open web site "https://wonske.com/anandtech/"
     When home page logo is available
