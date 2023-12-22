@@ -9,7 +9,7 @@
 
 Feature: Validate contact us page
   As a user can validate contact us page info
-  @contactus
+  @contactus @smoke
   Scenario: validate contact us page
     Given validate contact us menu must be available as "Contact Us"
     And click on contact us menu
@@ -19,7 +19,8 @@ Feature: Validate contact us page
 #    And validate address as "93 Simpson Avenue Harrisburg, PA"
 #    And validate phone number as "+001 10 101 0010"
 #    And validate email as "support@ecommercephp.com"
-  @contactus
+
+  @contactus @smoke
   Scenario Outline:
     Given contact us form must be available
     When click on send message button
@@ -27,7 +28,8 @@ Feature: Validate contact us page
     Examples:
       |msg|
       |Please enter your name.#Please enter your phone number.#Please enter your email address.#Please enter your message.  |
-  @contactus
+
+  @contactus @smoke
   Scenario Outline:
     Given contact us form must be available
     When user enter Name as "<nameinpt>"

@@ -1,15 +1,12 @@
 package pages;
 
-import cucumber.api.java.eo.Se;
-import lib.ScreenShorts;
+
 import lib.WaitAction;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
@@ -71,12 +68,11 @@ public class AddProducts {
 
     public void clickOnTopLevelCat() {
         topLevelinpt.click();
-        ScreenShorts.takeScreenShorts();
+//        ScreenShorts.takeScreenShorts();
     }
 
     public List<WebElement> getListOfMidLevelCat() {
         String gettopLvlRes = topLevelddlres.getAttribute("aria-owns");
-        System.out.println(gettopLvlRes);
         List<WebElement> MidLevelCatddl = driver.findElements(By.id(gettopLvlRes));
         return MidLevelCatddl;
     }
@@ -110,7 +106,54 @@ public class AddProducts {
      /***
       * Add product form
       * 
-      * ***/   
+      * ***/
+     @FindBy(name = "p_name")
+     WebElement productName;
+
+    @FindBy(name = "p_old_price")
+    WebElement oldPrice;
+
+    @FindBy(name = "p_current_price")
+    WebElement currentPrice;
+
+    @FindBy(name = "p_qty")
+    WebElement quantity;
+    @FindBy(name = "p_featured_photo")
+    WebElement featurePhoto;
+    @FindBy(xpath = "//div[@class=\"upload-btn\"]/input")
+    WebElement otherPhoto;
+    @FindBy(xpath = "//textarea[@id=\"editor1\"]/following-sibling::div/div[3]/div[2]")
+    WebElement enterDesc;
+    @FindBy(name = "p_is_featured")
+    WebElement featureIs;
+    @FindBy(name = "p_is_active")
+    WebElement activeIs;
+    @FindBy(xpath = "//*[@class=\"content\"]/div[1]/div[1]/div[1]/p")
+    WebElement getAddSucessMsg;
+    @FindBy(linkText = "View All")
+    WebElement viewAllBtn;
+    @FindBy(xpath = "//table[@id=\"example1\"]/tbody/tr[1]/td[10]/a[1]")
+    WebElement editBtn;
+    @FindBy(xpath = "//button[@name=\"form1\" and text()=\"Update\"]")
+    WebElement addProductUpdateBtn;
+    @FindBy(xpath = "//table[@id=\"example1\"]/tbody/tr[1]/td[10]/a[1]")
+    WebElement deleteBtn;
+    @FindBy(id = "myModalLabel")
+    WebElement headerTitle;
+    @FindBy(xpath = "//div[@class=\"modal-body\"]/p[1]")
+    WebElement deleteModelTitle;
+    @FindBy(xpath = "//div[@class=\"modal-body\"]/p[2]")
+    WebElement getDeleteModelDesc;
+    @FindBy(xpath = "//div[@class=\"modal-footer\"]/button")
+    WebElement popupDeleteBtn;
+    @FindBy(xpath = "//textarea[@id=\"editor2\"]/following-sibling::div/div[3]/div[2]")
+    WebElement shortDesc;
+    @FindBy(xpath = "//textarea[@id=\"editor3\"]/following-sibling::div/div[3]/div[2]")
+    WebElement featureDesc;
+    @FindBy(xpath = "//textarea[@id=\"editor4\"]/following-sibling::div/div[3]/div[2]")
+    WebElement conditionDesc;
+    @FindBy(xpath = "//textarea[@id=\"editor5\"]/following-sibling::div/div[3]/div[2]")
+    WebElement PolicyDesc;
     public void selectTopLevel(String arg1) {
         topLevelddlres.click();
         String gettopLvlRes = topLevelddlres.getAttribute("aria-owns");
@@ -131,26 +174,22 @@ public class AddProducts {
         WebElement EcatLevelCatddl = driver.findElement(By.xpath("//ul[@id="+'"'+gettopLvlRes+'"'+"]/li[text()="+'"'+arg1+'"'+"]"));
         EcatLevelCatddl.click();
     }
-    @FindBy(name = "p_name")
-    WebElement productName;
+
     public void enterProductName(String arg1) {
         productName.clear();
         productName.sendKeys(arg1);
     }
-    @FindBy(name = "p_old_price")
-    WebElement oldPrice;
+
     public void enterOldprice(String arg1) {
         oldPrice.clear();
         oldPrice.sendKeys(arg1);
     }
-    @FindBy(name = "p_current_price")
-    WebElement currentPrice;
+
     public void enterNewPrice(String arg1) {
         currentPrice.clear();
         currentPrice.sendKeys(arg1);
     }
-    @FindBy(name = "p_qty")
-    WebElement quantity;
+
     public void enterQuantity(String arg1) {
         quantity.clear();
         quantity.sendKeys(arg1);
@@ -170,80 +209,63 @@ public class AddProducts {
         WebElement sizeddl = driver.findElement(By.xpath("//ul[@id="+'"'+getAriaOwnsRes+'"'+"]/li[text()="+'"'+arg1+'"'+"]"));
         sizeddl.click();
     }
-    @FindBy(name = "p_featured_photo")
-    WebElement featurePhoto;
+
     public void selectFeaturePhoto(String arg1) {
         featurePhoto.sendKeys("C:\\Users\\Dell\\Downloads\\images.jpg");
     }
-    @FindBy(xpath = "//div[@class=\"upload-btn\"]/input")
-    WebElement otherPhoto;
+
     public void selectOthetPhoto(String arg1) {
         otherPhoto.sendKeys("C:\\Users\\Dell\\Downloads\\images.jpg");
     }
-    @FindBy(xpath = "//textarea[@id=\"editor1\"]/following-sibling::div/div[3]/div[2]")
-    WebElement enterDesc;
+
     public void enterDesc(String arg1) {
         enterDesc.clear();
         enterDesc.sendKeys(arg1);
     }
-    @FindBy(xpath = "//textarea[@id=\"editor2\"]/following-sibling::div/div[3]/div[2]")
-    WebElement shortDesc;
+
     public void enterShortDesc(String arg1) {
         shortDesc.clear();
         shortDesc.sendKeys(arg1);
     }
-    @FindBy(xpath = "//textarea[@id=\"editor3\"]/following-sibling::div/div[3]/div[2]")
-    WebElement featureDesc;
+
     public void enterfeatureDesc(String arg1) {
         featureDesc.clear();
         featureDesc.sendKeys(arg1);
     }
-    @FindBy(xpath = "//textarea[@id=\"editor4\"]/following-sibling::div/div[3]/div[2]")
-    WebElement conditionDesc;
 
     public void enterConditionDesc(String arg1) {
         conditionDesc.clear();
         conditionDesc.sendKeys(arg1);
     }
-    @FindBy(xpath = "//textarea[@id=\"editor5\"]/following-sibling::div/div[3]/div[2]")
-    WebElement PolicyDesc;
 
     public void enterPolicyDesc(String arg1) {
         PolicyDesc.clear();
         PolicyDesc.sendKeys(arg1);
     }
-    @FindBy(name = "p_is_featured")
-    WebElement featureIs;
+
     public void selectfeature(String arg1) {
         Select obj = new Select(featureIs);
         obj.selectByVisibleText(arg1);
     }
-    @FindBy(name = "p_is_active")
-    WebElement activeIs;
 
     public void selectActive(String arg1) {
         Select obj = new Select(activeIs);
         obj.selectByVisibleText(arg1);
     }
-    @FindBy(xpath = "//*[@class=\"content\"]/div[1]/div[1]/div[1]/p")
-    WebElement getAddSucessMsg;
+
     public String getSuccessMsg() {
         return getAddSucessMsg.getText();
     }
 
-    @FindBy(linkText = "View All")
-    WebElement viewAllBtn;
+
     public void clickOnViewAllBtn() {
         viewAllBtn.click();
     }
-    @FindBy(xpath = "//table[@id=\"example1\"]/tbody/tr[1]/td[10]/a[1]")
-    WebElement editBtn;
 
     public void clickOnEditBtn() {
         editBtn.click();
     }
-    @FindBy(xpath = "//button[@name=\"form1\" and text()=\"Update\"]")
-    WebElement addProductUpdateBtn;
+
     public void clickOnUpdateBtn() {
         WaitAction objWait = new WaitAction();
         objWait.expliciteWaitEleClickable(driver, 10, addProductUpdateBtn);
@@ -253,28 +275,23 @@ public class AddProducts {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true)", addProductUpdateBtn);
     }
-    @FindBy(xpath = "//table[@id=\"example1\"]/tbody/tr[1]/td[10]/a[1]")
-    WebElement deleteBtn;
+
     public void clickOnDeletebtn() {
         deleteBtn.click();
     }
-    @FindBy(id = "myModalLabel")
-    WebElement headerTitle;
+
     public void getDeleteConPopupTitle() {
         headerTitle.getText();
     }
-    @FindBy(xpath = "//div[@class=\"modal-body\"]/p[1]")
-    WebElement deleteModelTitle;
+
     public void getDeleteConPopupModelTitle() {
         deleteModelTitle.getText();
     }
-    @FindBy(xpath = "//div[@class=\"modal-body\"]/p[2]")
-    WebElement getDeleteModelDesc;
+
     public void getDeleteConPopDesc() {
         getDeleteModelDesc.getText();
     }
-    @FindBy(xpath = "//div[@class=\"modal-footer\"]/button")
-    WebElement popupDeleteBtn;
+
     public void clickOnDeletePopupBtn() {
         popupDeleteBtn.click();
     }

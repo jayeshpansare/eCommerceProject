@@ -22,46 +22,6 @@ public class ContactusPage {
         this.driver=driver;
         PageFactory.initElements(driver, this);
     }
-    @FindBy(xpath = "//a[text()=\"Contact Us\"]")
-    WebElement getcontactUsMenu;
-    public String getContactUsMenuName() {
-        return getcontactUsMenu.getText();
-    }
-
-    public void contactUsClk() {
-        getcontactUsMenu.click();
-    }
-    @FindBys({
-            @FindBy(xpath = "//h1[text()=\"Contact Us\"]"),
-            @FindBy(xpath = "//div[@class=\"page-banner\"]/div/h1")
-    })
-    WebElement getContactUsHeader;
-    public String getContctUsHeaderTxt() {
-        return getContactUsHeader.getText();
-    }
-    @FindAll({
-            @FindBy(xpath= "//h3[text()=\"Contact Form\"]"),
-            @FindBy(xpath = "//div[@class=\"page-banner\"]/div/h1")
-    })
-    WebElement contactForm;
-    public String getContactUsFormTxt() {
-        return contactForm.getText();
-    }
-    @FindBy(xpath = "//input[@name=\"visitor_name\"]/preceding-sibling::label")
-    WebElement nameLabel;
-    public String getNameLabel() {
-        return nameLabel.getText();
-    }
-    @FindBy(xpath = "//input[@name=\"visitor_email\"]/preceding-sibling::label")
-    WebElement emailLabel;
-    public String getEmailLabel() {
-        return emailLabel.getText();
-    }
-    @FindBy(xpath = "//input[@name=\"visitor_phone\"]/preceding-sibling::label")
-    WebElement phoneNum;
-    public String getPhoneNumberLabel() {
-        return phoneNum.getText();
-    }
     @FindBy(xpath = "//textarea[@name=\"visitor_message\"]/preceding-sibling::label")
     WebElement message;
     public String getMegLabel() {
@@ -74,16 +34,72 @@ public class ContactusPage {
     }
     @FindBy(xpath = "//h3[text()=\"Contact Form\"]/parent::div/div[1]/div[2]/address[2]/span")
     WebElement phoneNumber;
+    @FindBy(xpath = "//h3[text()=\"Contact Form\"]/parent::div/div[1]/div[2]/address[3]/a")
+    WebElement emailTxt;
+    @FindBy(xpath = "//input[@name=\"form_contact\"]")
+    WebElement sendMsgBtn;
+    @FindBy(xpath = "//input[@name=\"visitor_name\"]")
+    WebElement nameInpt;
+    @FindBy(xpath = "//input[@name=\"visitor_email\"]")
+    WebElement emailInpt;
+    @FindBy(xpath = "//input[@name=\"visitor_phone\"]")
+    WebElement phoneNumInpt;
+    @FindBy(xpath = "//textarea[@name=\"visitor_message\"]")
+    WebElement txtArea;
+    @FindBy(xpath = "//a[text()=\"Contact Us\"]")
+    WebElement getcontactUsMenu;
+    @FindBys({
+            @FindBy(xpath = "//h1[text()=\"Contact Us\"]"),
+            @FindBy(xpath = "//div[@class=\"page-banner\"]/div/h1")
+    })
+    WebElement getContactUsHeader;
+    @FindAll({
+            @FindBy(xpath= "//h3[text()=\"Contact Form\"]"),
+            @FindBy(xpath = "//div[@class=\"page-banner\"]/div/h1")
+    })
+    WebElement contactForm;
+    @FindBy(xpath = "//input[@name=\"visitor_name\"]/preceding-sibling::label")
+    WebElement nameLabel;
+    @FindBy(xpath = "//input[@name=\"visitor_email\"]/preceding-sibling::label")
+    WebElement emailLabel;
+    @FindBy(xpath = "//input[@name=\"visitor_phone\"]/preceding-sibling::label")
+    WebElement phoneNum;
+    public String getContactUsMenuName() {
+        return getcontactUsMenu.getText();
+    }
+
+    public void contactUsClk() {
+        getcontactUsMenu.click();
+    }
+
+    public String getContctUsHeaderTxt() {
+        return getContactUsHeader.getText();
+    }
+
+    public String getContactUsFormTxt() {
+        return contactForm.getText();
+    }
+
+    public String getNameLabel() {
+        return nameLabel.getText();
+    }
+
+    public String getEmailLabel() {
+        return emailLabel.getText();
+    }
+
+    public String getPhoneNumberLabel() {
+        return phoneNum.getText();
+    }
+
     public String getPhoneNumberTxt() {
         return phoneNumber.getText();
     }
-    @FindBy(xpath = "//h3[text()=\"Contact Form\"]/parent::div/div[1]/div[2]/address[3]/a")
-    WebElement emailTxt;
+
     public String getEmailTxt() {
         return emailTxt.getText();
     }
-    @FindBy(xpath = "//input[@name=\"form_contact\"]")
-    WebElement sendMsgBtn;
+
     public void sendMessageBtnClk() {
         sendMsgBtn.click();
     }
@@ -103,25 +119,21 @@ public class ContactusPage {
         }
         return msg;
     }
-    @FindBy(xpath = "//input[@name=\"visitor_name\"]")
-    WebElement nameInpt;
+
     public void nameSendInput(String arg1) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(nameInpt));
         nameInpt.sendKeys(arg1);
     }
-    @FindBy(xpath = "//input[@name=\"visitor_email\"]")
-    WebElement emailInpt;
+
     public void emailSendInput(String arg1) {
         emailInpt.sendKeys(arg1);
     }
-    @FindBy(xpath = "//input[@name=\"visitor_phone\"]")
-    WebElement phoneNumInpt;
+
     public void phoneNumSendInput(String arg1) {
         phoneNumInpt.sendKeys(arg1);
     }
-    @FindBy(xpath = "//textarea[@name=\"visitor_message\"]")
-    WebElement txtArea;
+
     public void msgSendInput(String arg1) {
         txtArea.sendKeys(arg1);
     }

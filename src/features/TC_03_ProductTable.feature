@@ -8,7 +8,6 @@
 #And,But:
 
 Feature: Validate product on table page
-  @smoke
   Scenario: validate product on table
     Given Open Add product management menu
     When view product is available

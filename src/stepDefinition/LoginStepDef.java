@@ -10,6 +10,7 @@ import org.testng.Assert;
 import pages.LoginPages;
 
 public class LoginStepDef extends BaseClass {
+    LoginPages objLogin = new LoginPages(getDriver());
     @Given("^open login page$")
     public void open_login_page(){
         BrokenLinks.findBrokenLink(getDriver());
@@ -17,19 +18,16 @@ public class LoginStepDef extends BaseClass {
 
     @When("^User enter email and password using \"([^\"]*)\" and \"([^\"]*)\"$")
     public void user_enter_email_and_password_using_and(String username, String password) throws Throwable {
-        LoginPages objLogin = new LoginPages(getDriver());
         objLogin.sendLoginData(username, password);
     }
 
     @Then("^Click on login button$")
     public void click_on_login_button() throws Throwable {
-        LoginPages objLogin = new LoginPages(getDriver());
         objLogin.LoginBtnclick();
     }
 
     @Then("^display an error messages as  \"([^\"]*)\"$")
     public void display_an_error_messages_as(String errorMeg) throws Throwable {
-        LoginPages objLogin = new LoginPages(getDriver());
         Assert.assertEquals(objLogin.getErroMsg(), errorMeg);
     }
 
