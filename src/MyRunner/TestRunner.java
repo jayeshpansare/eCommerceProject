@@ -11,19 +11,21 @@ import java.io.IOException;
 @CucumberOptions(
         features = {"src/features"},
         glue = {"stepDefinition"},
-        tags = {"@FAQ"},
+        tags = {"@Aboutus"},
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber",
                 "json:target/cucumber-reports/cucumber.json"
         })
-public class TestRunner extends AbstractTestNGCucumberTests{
-        BaseClass objBaseClass = new BaseClass();
-        @BeforeSuite
-        public void openWebsite() throws IOException {
-                objBaseClass.initBrowser();
-        }
-        @AfterSuite
-        public void closeSite(){
-                objBaseClass.tearDown();
-        }
+public class TestRunner extends AbstractTestNGCucumberTests {
+    BaseClass objBaseClass = new BaseClass();
+
+    @BeforeSuite
+    public void openWebsite() throws IOException {
+        objBaseClass.initBrowser();
+    }
+
+    @AfterSuite
+    public void closeSite() {
+        objBaseClass.tearDown();
+    }
 }

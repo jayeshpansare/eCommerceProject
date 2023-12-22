@@ -13,28 +13,30 @@ import java.util.List;
 public class category {
     private final WebDriver driver;
     Actions action;
+
     public category(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
     @FindBy(xpath = "//div[@class=\"text\"]/h3/a")
     List<WebElement> listOfProd;
     @FindBy(className = "pl_15")
     WebElement getProdErrorMsg;
 
     public String getMenu(String arg1) {
-        return driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\""+arg1+"\"]")).getText();
+        return driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\"" + arg1 + "\"]")).getText();
     }
 
     public void hoverMainMenu(String arg0) {
-        WebElement ele = driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\""+arg0+"\"]"));
+        WebElement ele = driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\"" + arg0 + "\"]"));
         Actions obj = new Actions(driver);
         obj.moveToElement(ele).build().perform();
     }
 
     public HashSet<String> getSubMenu(String arg0) {
-        List<WebElement> getSubMenu = driver.findElements(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\""+arg0+"\"]/parent::li/ul/li/a"));
-        HashSet<String> listOfMenu =  new HashSet<>();
+        List<WebElement> getSubMenu = driver.findElements(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\"" + arg0 + "\"]/parent::li/ul/li/a"));
+        HashSet<String> listOfMenu = new HashSet<>();
         for (WebElement getsubMenuList : getSubMenu) {
             listOfMenu.add(getsubMenuList.getText());
         }
@@ -42,8 +44,8 @@ public class category {
     }
 
     public HashSet<String> getSubMenus(String arg0, String arg1) {
-        List<WebElement> getSubMenu = driver.findElements(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\""+arg0+"\"]/parent::li/ul/li/a[text()=\""+arg1+"\"]/parent::li/ul/li/a"));
-        HashSet<String> listOfMenu =  new HashSet<>();
+        List<WebElement> getSubMenu = driver.findElements(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\"" + arg0 + "\"]/parent::li/ul/li/a[text()=\"" + arg1 + "\"]/parent::li/ul/li/a"));
+        HashSet<String> listOfMenu = new HashSet<>();
         for (WebElement getsubMenuList : getSubMenu) {
             listOfMenu.add(getsubMenuList.getText());
         }
@@ -51,34 +53,36 @@ public class category {
     }
 
     public void catClick(String arg0) {
-        WebElement ele = driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\""+arg0+"\"]"));
+        WebElement ele = driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\"" + arg0 + "\"]"));
         Actions obj = new Actions(driver);
         obj.moveToElement(ele);
         obj.click(ele);
         obj.build().perform();
     }
+
     public void catClick(String arg0, String arg1) {
-        WebElement ele = driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\""+arg0+"\"]"));
-        WebElement subele = driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\""+arg0+"\"]/parent::li/ul/li/a[text()=\""+arg1+"\"]"));
+        WebElement ele = driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\"" + arg0 + "\"]"));
+        WebElement subele = driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\"" + arg0 + "\"]/parent::li/ul/li/a[text()=\"" + arg1 + "\"]"));
         action = new Actions(driver);
         action.moveToElement(ele).build().perform();
         action.click(subele).build().perform();
     }
+
     public void catClick(String arg0, String arg1, String arg2) {
-        WebElement ele = driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\""+arg0+"\"]"));
-        WebElement subele = driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\""+arg0+"\"]/parent::li/ul/li/a[text()=\""+arg1+"\"]/parent::li/ul/li/a[text()=\""+arg2+"\"]"));
+        WebElement ele = driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\"" + arg0 + "\"]"));
+        WebElement subele = driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\"" + arg0 + "\"]/parent::li/ul/li/a[text()=\"" + arg1 + "\"]/parent::li/ul/li/a[text()=\"" + arg2 + "\"]"));
         action = new Actions(driver);
         action.moveToElement(ele).build().perform();
         action.click(subele).build().perform();
     }
 
     public HashSet<String> getListOfProd() {
-        HashSet<String> listOfMenu =  new HashSet<>();
-        if(listOfProd.size()>0){
+        HashSet<String> listOfMenu = new HashSet<>();
+        if (listOfProd.size() > 0) {
             for (WebElement getsubMenuList : listOfProd) {
                 listOfMenu.add(getsubMenuList.getText());
             }
-        }else {
+        } else {
             listOfMenu.add(getProdErrorMsg.getText());
         }
         return listOfMenu;

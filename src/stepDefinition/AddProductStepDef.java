@@ -1,27 +1,25 @@
 package stepDefinition;
 
-import cucumber.api.PendingException;
-import cucumber.api.java.en.*;
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import lib.BaseClass;
-import lib.Dataprovider;
-import lib.MyRetry;
 import lib.TableEntry;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.IRetryAnalyzer;
-import org.testng.annotations.Test;
 import pages.AddProducts;
-import cucumber.api.java.en.Then;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class AddProductStepDef extends BaseClass {
     AddProducts objAddProducts = new AddProducts(getDriver());
+
     @Given("^Open Add product form$")
     public void open_Add_product_form() throws Throwable {
         objAddProducts.openAddProductsForm();
     }
+
     @Given("^Open Add product management menu$")
     public void open_Add_product_management_menu() throws Throwable {
         objAddProducts.openaddproductsmenu();
@@ -42,7 +40,7 @@ public class AddProductStepDef extends BaseClass {
     }
 
     @Given("^add product form is open$")
-    public void add_product_form_is_open(){
+    public void add_product_form_is_open() {
 
     }
 
@@ -53,12 +51,13 @@ public class AddProductStepDef extends BaseClass {
     }
 
     @When("^Click on Add product button$")
-    public void click_on_Add_product_button(){
+    public void click_on_Add_product_button() {
 
         objAddProducts.addProductEleClick();
     }
+
     @When("^Click on Add product button only once$")
-    public void click_on_Add_product_button_Only(){
+    public void click_on_Add_product_button_Only() {
 
         objAddProducts.addProductEleClickOnly();
     }
@@ -68,22 +67,22 @@ public class AddProductStepDef extends BaseClass {
 
         Assert.assertTrue(objAddProducts.getErrorMessages().contains(errorMsg));
     }
+
     /**
      * Add product form
-     *
-     * **/
+     **/
     @When("^user select top level cat as \"([^\"]*)\"$")
     public void user_select_top_level_cat_as(String arg1) {
         objAddProducts.selectTopLevel(arg1);
     }
 
     @When("^user select mid level cat as \"([^\"]*)\"$")
-    public void user_select_mid_level_cat_as(String arg1){
+    public void user_select_mid_level_cat_as(String arg1) {
         objAddProducts.selectMidLevel(arg1);
     }
 
     @When("^user select end level cat as \"([^\"]*)\"$")
-    public void user_select_end_level_cat_as(String arg1){
+    public void user_select_end_level_cat_as(String arg1) {
         objAddProducts.selectEndLevel(arg1);
     }
 
@@ -166,18 +165,18 @@ public class AddProductStepDef extends BaseClass {
     public void displaySuccessMessageAs(String arg0) {
         Assert.assertEquals(objAddProducts.getSuccessMsg(), arg0);
     }
+
     /**
-     *
      * validate data with tabel
-     * */
+     */
     @Given("^click on view all button$")
     public void click_on_view_all_button() {
         objAddProducts.clickOnViewAllBtn();
     }
 
     @When("^open add product table$")
-    public void open_add_product_table(){
-         Assert.assertEquals(driver.getTitle(),"Admin Panel");
+    public void open_add_product_table() {
+        Assert.assertEquals(driver.getTitle(), "Admin Panel");
     }
 
     @Then("^validate product name as \"([^\"]*)\"$")
@@ -186,12 +185,12 @@ public class AddProductStepDef extends BaseClass {
     }
 
     @Then("^validate old proce as \"([^\"]*)\"$")
-    public void validate_old_proce_as(String arg1){
+    public void validate_old_proce_as(String arg1) {
         Assert.assertEquals(arg1, TableEntry.getTableData(driver).get(2).get(3).toString().replace("$", ""));
     }
 
     @Then("^validate price as \"([^\"]*)\"$")
-    public void validate_price_as(String arg1){
+    public void validate_price_as(String arg1) {
         Assert.assertEquals(arg1, TableEntry.getTableData(driver).get(2).get(4).toString().replace("$", ""));
     }
 
@@ -201,7 +200,7 @@ public class AddProductStepDef extends BaseClass {
     }
 
     @Then("^validate category as \"([^\"]*)\" as \"([^\"]*)\" as \"([^\"]*)\"$")
-    public void validate_category_as_as_as(String arg1, String arg2, String arg3){
+    public void validate_category_as_as_as(String arg1, String arg2, String arg3) {
         Assert.assertTrue(TableEntry.getTableData(driver).get(2).get(8).toString().contains(arg1));
         Assert.assertTrue(TableEntry.getTableData(driver).get(2).get(8).toString().contains(arg2));
         Assert.assertTrue(TableEntry.getTableData(driver).get(2).get(8).toString().contains(arg3));
@@ -209,16 +208,17 @@ public class AddProductStepDef extends BaseClass {
 
     /**
      * update the product
-     *
-     * */
+     */
     @Given("^update product form should be open$")
-    public void update_product_form_should_be_open(){
+    public void update_product_form_should_be_open() {
         objAddProducts.clickOnEditBtn();
     }
+
     @When("^Scroll to update product button$")
     public void scroll_to_update_product_button() {
         objAddProducts.scrolltoupdateProductEle();
     }
+
     @And("^Click on update product button only once$")
     public void clickOnUpdateProductButtonOnlyOnce() {
         objAddProducts.clickOnUpdateBtn();
@@ -226,7 +226,7 @@ public class AddProductStepDef extends BaseClass {
 
     /**
      * Delete add product
-     * **/
+     **/
     @Then("^click on delete button$")
     public void click_on_delete_button() throws Throwable {
         objAddProducts.clickOnDeletebtn();

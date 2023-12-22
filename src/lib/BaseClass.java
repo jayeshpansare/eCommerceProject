@@ -4,21 +4,18 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-//import org.testng.annotations.AfterSuite;
-//import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 public class BaseClass {
     static String projectPath = System.getProperty("user.dir");
     public static WebDriver driver;
+
     @BeforeSuite
     public void initBrowser() throws IOException {
         String webURL = readProperty().getProperty("URL");
@@ -36,7 +33,8 @@ public class BaseClass {
         driver.get(webURL);
         driver.manage().window().maximize();
     }
-    public WebDriver getDriver(){
+
+    public WebDriver getDriver() {
         return driver;
     }
 
@@ -47,8 +45,9 @@ public class BaseClass {
         prop.load(fin);
         return prop;
     }
+
     @AfterSuite
-    public void tearDown(){
+    public void tearDown() {
         driver.quit();
     }
 }

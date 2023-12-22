@@ -14,14 +14,15 @@ import static lib.BaseClass.driver;
 public class ScreenShorts {
     public static void takeScreenShorts() {
         try {
-            File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             String date = getCurrentTimeStamp();
-            String destinationFile = BaseClass.projectPath+"/src/screenShorts/screenshot"+date+".png";
+            String destinationFile = BaseClass.projectPath + "/src/screenShorts/screenshot" + date + ".png";
             FileUtils.copyFile(scrFile, new File(destinationFile)); // interview questions
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     public static String getCurrentTimeStamp() {
         return new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss").format(new Date());
     }

@@ -25,14 +25,14 @@ Feature: Validate login page
 #      | Test@gmail.com | Sheet1   | Email Address does not match |
 #      | Test@gmail.com | Test@123 | Email Address does not match |
 
-    @valid
-    Scenario Template:  validate login with valid inputs
-      Given login page title as "Login"
-      When User enter email and password using "<validemail>" and "<validpassword>"
-      Then Click on login button
-      Then display dashboard
-      And validate dashboard page title as "Admin Panel"
+  @valid
+  Scenario Template:  validate login with valid inputs
+    Given login page title as "Login"
+    When User enter email and password using "<validemail>" and "<validpassword>"
+    Then Click on login button
+    Then display dashboard
+    And validate dashboard page title as "Admin Panel"
 
-      Examples:
-        | validemail          | validpassword     |  |
-        | admin@mail.com | Password@123 |  |
+    Examples:
+      | validemail     | validpassword |  |
+      | admin@mail.com | Password@123  |  |

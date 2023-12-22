@@ -2,26 +2,28 @@ package pages;
 
 import lib.BrokenLinks;
 import lib.WaitAction;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.swing.*;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class HomePage {
     private final WebDriver driver;
+
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
     @FindBy(xpath = "//div[@class=\"page-banner\"]/div/h1")
     WebElement getHomePageBanner;
     @FindBy(xpath = "//img[@alt=\"logo image\"]")
@@ -40,9 +42,11 @@ public class HomePage {
     WebElement searchInpt;
     @FindBy(xpath = "//span[text()=\"No result found\"]")
     WebElement getSearchErrorMsg;
+
     public String getSearchProdErrorMsg() {
         return getSearchErrorMsg.getText();
     }
+
     @FindBy(xpath = "//input[@name=\"search_text\"]/parent::div/following-sibling::button")
     WebElement searchBtn;
     @FindBy(xpath = "//h2[text()=\"Featured Products\"]")
@@ -69,6 +73,7 @@ public class HomePage {
     WebElement sendMsgtxtarea;
     @FindBy(xpath = "//form[@id=\"tawk-prechat-form\"]/div[1]/fieldset/div/input")
     WebElement sendMsgName;
+
     public String getLoginTitle() {
         return getHomePageBanner.getText();
     }
@@ -81,17 +86,17 @@ public class HomePage {
     }
 
     public String chkTextPresent(String str) {
-        return driver.findElement(By.xpath("//a[text()=\""+str+"\"]")).getText();
+        return driver.findElement(By.xpath("//a[text()=\"" + str + "\"]")).getText();
     }
 
     public void linkClk(String arg1) {
-        WebElement ele = driver.findElement(By.xpath("//a[text()=\""+arg1+"\"]"));
+        WebElement ele = driver.findElement(By.xpath("//a[text()=\"" + arg1 + "\"]"));
         WaitAction objwait = new WaitAction();
         objwait.expliciteWaitEleClickable(driver, 10, ele);
         ele.click();
     }
 
-    public String getSendMsgSecTitle(){
+    public String getSendMsgSecTitle() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(sendMsgIframe));
         driver.switchTo().frame(sendMsgIframe);
@@ -120,7 +125,7 @@ public class HomePage {
     }
 
     public void sendEmailInpt(String txt) {
-    //    sendMsgEmail.clear();
+        //    sendMsgEmail.clear();
         sendMsgEmail.sendKeys(Keys.CONTROL + "a");
         sendMsgEmail.sendKeys(Keys.DELETE);
         sendMsgEmail.sendKeys(txt);
@@ -198,11 +203,11 @@ public class HomePage {
         Actions obj = new Actions(driver);
         obj.moveToElement(getFetProdTitle).build().perform();
         ArrayList<String> fetaureData = new ArrayList<>();
-       List<WebElement> getEle = driver.findElements(By.xpath("//h2[text()=\"Featured Products\"]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div/div/div/div/div[2]/h3/a"));
-        for (WebElement getEles : getEle){
+        List<WebElement> getEle = driver.findElements(By.xpath("//h2[text()=\"Featured Products\"]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div/div/div/div/div[2]/h3/a"));
+        for (WebElement getEles : getEle) {
             fetaureData.add(getEles.getAttribute("innerText"));
         }
-       return fetaureData;
+        return fetaureData;
     }
 
     public String getLetProdTitle() {
@@ -219,10 +224,10 @@ public class HomePage {
         Actions obj = new Actions(driver);
         obj.moveToElement(getLetProdTitle).build().perform();
         ArrayList<String> latestData = new ArrayList<>();
-            List<WebElement> getEle= driver.findElements(By.xpath("//h2[text()=\"Latest Products\"]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div/div/div/div/div[2]/h3/a"));
-            for (WebElement getEles : getEle){
-                latestData.add(getEles.getAttribute("innerText"));
-            }
-            return latestData;
+        List<WebElement> getEle = driver.findElements(By.xpath("//h2[text()=\"Latest Products\"]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div/div/div/div/div[2]/h3/a"));
+        for (WebElement getEles : getEle) {
+            latestData.add(getEles.getAttribute("innerText"));
+        }
+        return latestData;
     }
 }

@@ -7,7 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPages {
     private final WebDriver driver;
-
     public LoginPages(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -24,11 +23,9 @@ public class LoginPages {
         usernameinput.sendKeys(username);
         passwordinpt.sendKeys(password);
     }
-
     public void LoginBtnclick() {
         loginBtn.click();
     }
-
     public String getErroMsg() {
         return loginErrorMsg.getText().trim();
     }

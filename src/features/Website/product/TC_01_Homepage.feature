@@ -9,7 +9,8 @@
 
 Feature: Validate home page
   As a user can validate home page info
-  @homepage @smoke @FAQ
+
+  @homepage @smoke @Aboutus
   Scenario: validate home info with its sliders
     Given open web site "https://wonske.com/anandtech/"
     When home page logo is available
@@ -24,14 +25,14 @@ Feature: Validate home page
 
   @homepage @smoke
   Scenario Outline: validate search with invalid data
-  Given search input must be available
-  When user enter invalid input as "<invalidInpt>"
-  And click on search submit button
-  Then display an search error message as "<error>"
-  Examples:
-  |invalidInpt|error|
-  |test555       | No result found|
-  |2312321    | No result found|
+    Given search input must be available
+    When user enter invalid input as "<invalidInpt>"
+    And click on search submit button
+    Then display an search error message as "<error>"
+    Examples:
+      | invalidInpt | error           |
+      | test555     | No result found |
+      | 2312321     | No result found |
 
   @homepage @smoke
   Scenario Outline: validate search with valid data
@@ -41,19 +42,19 @@ Feature: Validate home page
     Then display product as "<displayproductname>"
     Then back to home page
     Examples:
-      |productname|displayproductname|
-      |Men's Soft Classic Sneaker|Men's Soft Classic Sneaker|
-      |Men's|Men's Soft Classic Sneaker                     |
-      |Men's|Men's Long Cuffed Jogger Yoga Sweat Pant    |
+      | productname                | displayproductname                       |
+      | Men's Soft Classic Sneaker | Men's Soft Classic Sneaker               |
+      | Men's                      | Men's Soft Classic Sneaker               |
+      | Men's                      | Men's Long Cuffed Jogger Yoga Sweat Pant |
 
   @homepage @smoke
   Scenario Outline: validate feature products slider
-  Given feature products section must be available "<featureTitle>"
-  When fetaure products desc must be available "<featureDesc>"
-  Then display list of products "<featureProdList>"
-  Examples:
-  |featureTitle|featureDesc|featureProdList|
-  |FEATURED PRODUCTS|Our list on Top Featured Products|Amazfit GTS 3 Smart Watch for Android iPhone#Men's Loose Fit Heavyweight Long-Sleeve Pocket T-Shirt#Women's Tea Length Dress with Rosette Detail (Petite & Regular)|
+    Given feature products section must be available "<featureTitle>"
+    When fetaure products desc must be available "<featureDesc>"
+    Then display list of products "<featureProdList>"
+    Examples:
+      | featureTitle      | featureDesc                       | featureProdList                                                                                                                                                     |
+      | FEATURED PRODUCTS | Our list on Top Featured Products | Amazfit GTS 3 Smart Watch for Android iPhone#Men's Loose Fit Heavyweight Long-Sleeve Pocket T-Shirt#Women's Tea Length Dress with Rosette Detail (Petite & Regular) |
 
   @homepage @smoke
   Scenario Outline: validate latest products slider
@@ -61,8 +62,8 @@ Feature: Validate home page
     When latest products desc must be available "<latestDesc>"
     Then display list of latest products as "<latestProdList>"
     Examples:
-      |latestTitle|latestDesc|latestProdList|
-      |LATEST PRODUCTS|Our list of recently added products|Women's Plus-Size Shirt Dress with Gold Hardware#Digital Infrared Thermometer for Adults and Kids#Men's Long Cuffed Jogger Yoga Sweat Pant|
+      | latestTitle     | latestDesc                          | latestProdList                                                                                                                             |
+      | LATEST PRODUCTS | Our list of recently added products | Women's Plus-Size Shirt Dress with Gold Hardware#Digital Infrared Thermometer for Adults and Kids#Men's Long Cuffed Jogger Yoga Sweat Pant |
 
   @homepage @smoke
   Scenario: validate send message UI part
@@ -79,8 +80,8 @@ Feature: Validate home page
     Then display email error message as "<emailErr>"
     Then display message error message as "<messageErr>"
     Examples:
-      | nameErr                   | emailErr | messageErr |  |
-      | This field is required | This field is required | This field is required | |
+      | nameErr                | emailErr               | messageErr             |  |
+      | This field is required | This field is required | This field is required |  |
 
   @homepage @smoke
   Scenario Outline: validate send message email input with invalid data
@@ -89,12 +90,12 @@ Feature: Validate home page
     Then display email error message as "<email>"
     Then click on submit button
     Examples:
-      | emailInpt | email                  |
-      | test      | Invalid email address. |
-      | test@     | Invalid email address. |
-      |test@gmail |Invalid email address.  |
-      |157653152  | Invalid email address. |
-      | test124@yopmail.com|  Invalid email address. |
+      | emailInpt           | email                  |
+      | test                | Invalid email address. |
+      | test@               | Invalid email address. |
+      | test@gmail          | Invalid email address. |
+      | 157653152           | Invalid email address. |
+      | test124@yopmail.com | Invalid email address. |
 
   @homepage @smoke
   Scenario Outline: validate send message with valid inputs
@@ -107,8 +108,8 @@ Feature: Validate home page
     And click on send mesg submit button
 
     Examples:
-      | nameInpt | emailInpt        | msgInpt                                                                                                                                                                                                                                                                                                                          |
-      | test     | test124@gmail.com   | testmessage                                                                                                                                                                                                                                                                                                                      |
+      | nameInpt | emailInpt         | msgInpt                                                                                                                                                                                                                                                                                                                          |
+      | test     | test124@gmail.com | testmessage                                                                                                                                                                                                                                                                                                                      |
       | test2    | test124@gmail.com | dasdasasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss |
 
   @homepage @smoke

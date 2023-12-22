@@ -96,7 +96,7 @@ Feature: Validate add product page
 
     Examples:
       | toplevelcat | midlevelcat | endlevelcat | productName         | oldprice | newprice | quantity | size | colour | featurePhoto | otherPhoto | description        | shortDesc        | features                    | condition        | returnpolicy  | isfeature | isactive |
-      | Kids        | Clothing    | Boys        | update test Product | 40       | 45       | 5        | XL   | Green  | featureP     | OtherP     | update description | update shortDesc | update features description | update condition | update policy | No       | No      |
+      | Kids        | Clothing    | Boys        | update test Product | 40       | 45       | 5        | XL   | Green  | featureP     | OtherP     | update description | update shortDesc | update features description | update condition | update policy | No        | No       |
 
   Scenario: delete product form table
     Given click on view all button

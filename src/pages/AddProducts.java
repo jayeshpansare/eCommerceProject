@@ -20,34 +20,35 @@ public class AddProducts {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
     @FindBy(linkText = "Add Product")
     WebElement addProductBtn;
     @FindBy(xpath = "//span[text()=\"Product Management\"]")
     WebElement ProductMngMenu;
-    @FindBy(xpath="//select[@name=\"tcat_id\"]/following-sibling::span")
+    @FindBy(xpath = "//select[@name=\"tcat_id\"]/following-sibling::span")
     WebElement topLevelinpt;
 
-    @FindBy(xpath="//select[@name=\"tcat_id\"]/following-sibling::span/span/span")
+    @FindBy(xpath = "//select[@name=\"tcat_id\"]/following-sibling::span/span/span")
     WebElement topLevelddlres;
 
-    @FindBy(xpath="//select[@name=\"mcat_id\"]/following-sibling::span")
+    @FindBy(xpath = "//select[@name=\"mcat_id\"]/following-sibling::span")
     WebElement midLevelinpt;
 
-    @FindBy(xpath="//select[@name=\"mcat_id\"]/following-sibling::span/span/span")
+    @FindBy(xpath = "//select[@name=\"mcat_id\"]/following-sibling::span/span/span")
     WebElement midLevelddlres;
-    @FindBy(xpath="//select[@name=\"ecat_id\"]/following-sibling::span")
+    @FindBy(xpath = "//select[@name=\"ecat_id\"]/following-sibling::span")
     WebElement ecatLevelinpt;
-    @FindBy(xpath="//select[@name=\"ecat_id\"]/following-sibling::span/span/span")
+    @FindBy(xpath = "//select[@name=\"ecat_id\"]/following-sibling::span/span/span")
     WebElement ecatLevelddlres;
 
-    @FindBy(xpath="//label[text()=\"Select Size\"]/following-sibling::div/select/following-sibling::span")
+    @FindBy(xpath = "//label[text()=\"Select Size\"]/following-sibling::div/select/following-sibling::span")
     WebElement sizeinpt;
-    @FindBy(xpath="//label[text()=\"Select Size\"]/following-sibling::div/select/following-sibling::span/span/span")
+    @FindBy(xpath = "//label[text()=\"Select Size\"]/following-sibling::div/select/following-sibling::span/span/span")
     WebElement sizeddlres;
 
-    @FindBy(xpath="//label[text()=\"Select Color\"]/following-sibling::div/select/following-sibling::span")
+    @FindBy(xpath = "//label[text()=\"Select Color\"]/following-sibling::div/select/following-sibling::span")
     WebElement colourinpt;
-    @FindBy(xpath="//label[text()=\"Select Color\"]/following-sibling::div/select/following-sibling::span/span/span")
+    @FindBy(xpath = "//label[text()=\"Select Color\"]/following-sibling::div/select/following-sibling::span/span/span")
     WebElement colourddlres;
 
     @FindBy(xpath = "//ul[@id=\"select2-tcat_id-oh-results\"]")
@@ -56,6 +57,7 @@ public class AddProducts {
     WebElement addProductFormBtn;
     @FindBy(xpath = "//section[@class=\"content\"]/div/div/div/p")
     WebElement getAddProductErrorMsg;
+
     public void openAddProductsForm() {
         WaitAction objWait = new WaitAction();
         objWait.expliciteWaitEleClickable(driver, 10, addProductBtn);
@@ -88,27 +90,30 @@ public class AddProducts {
         addProductFormBtn.click();
         addProductFormBtn.click();
     }
+
     public void addProductEleClickOnly() {
         WaitAction objWait = new WaitAction();
         objWait.expliciteWaitEleClickable(driver, 10, addProductFormBtn);
         addProductFormBtn.click();
     }
+
     public String getErrorMessages() throws InterruptedException {
-        String  geterrorMsg = null;
+        String geterrorMsg = null;
         Thread.sleep(50);
         try {
             geterrorMsg = getAddProductErrorMsg.getText();
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             addProductEleClick();
         }
         return geterrorMsg;
     }
-     /***
-      * Add product form
-      * 
-      * ***/
-     @FindBy(name = "p_name")
-     WebElement productName;
+
+    /***
+     * Add product form
+     *
+     * ***/
+    @FindBy(name = "p_name")
+    WebElement productName;
 
     @FindBy(name = "p_old_price")
     WebElement oldPrice;
@@ -154,24 +159,25 @@ public class AddProducts {
     WebElement conditionDesc;
     @FindBy(xpath = "//textarea[@id=\"editor5\"]/following-sibling::div/div[3]/div[2]")
     WebElement PolicyDesc;
+
     public void selectTopLevel(String arg1) {
         topLevelddlres.click();
         String gettopLvlRes = topLevelddlres.getAttribute("aria-owns");
-        WebElement lowLevelCatddl = driver.findElement(By.xpath("//ul[@id="+'"'+gettopLvlRes+'"'+"]/li[text()="+'"'+arg1+'"'+"]"));
+        WebElement lowLevelCatddl = driver.findElement(By.xpath("//ul[@id=" + '"' + gettopLvlRes + '"' + "]/li[text()=" + '"' + arg1 + '"' + "]"));
         lowLevelCatddl.click();
     }
 
     public void selectMidLevel(String arg1) {
         midLevelinpt.click();
         String gettopLvlRes = midLevelddlres.getAttribute("aria-owns");
-        WebElement MidLevelCatddl = driver.findElement(By.xpath("//ul[@id="+'"'+gettopLvlRes+'"'+"]/li[text()="+'"'+arg1+'"'+"]"));
+        WebElement MidLevelCatddl = driver.findElement(By.xpath("//ul[@id=" + '"' + gettopLvlRes + '"' + "]/li[text()=" + '"' + arg1 + '"' + "]"));
         MidLevelCatddl.click();
     }
 
     public void selectEndLevel(String arg1) {
         ecatLevelinpt.click();
         String gettopLvlRes = ecatLevelddlres.getAttribute("aria-owns");
-        WebElement EcatLevelCatddl = driver.findElement(By.xpath("//ul[@id="+'"'+gettopLvlRes+'"'+"]/li[text()="+'"'+arg1+'"'+"]"));
+        WebElement EcatLevelCatddl = driver.findElement(By.xpath("//ul[@id=" + '"' + gettopLvlRes + '"' + "]/li[text()=" + '"' + arg1 + '"' + "]"));
         EcatLevelCatddl.click();
     }
 
@@ -199,14 +205,14 @@ public class AddProducts {
     public void selectProductSize(String arg1) {
         sizeinpt.click();
         String getAriaOwnsRes = sizeddlres.getAttribute("aria-owns");
-        WebElement sizeddl = driver.findElement(By.xpath("//ul[@id="+'"'+getAriaOwnsRes+'"'+"]/li[text()="+'"'+arg1+'"'+"]"));
+        WebElement sizeddl = driver.findElement(By.xpath("//ul[@id=" + '"' + getAriaOwnsRes + '"' + "]/li[text()=" + '"' + arg1 + '"' + "]"));
         sizeddl.click();
     }
 
     public void selectColour(String arg1) {
         colourinpt.click();
         String getAriaOwnsRes = colourddlres.getAttribute("aria-owns");
-        WebElement sizeddl = driver.findElement(By.xpath("//ul[@id="+'"'+getAriaOwnsRes+'"'+"]/li[text()="+'"'+arg1+'"'+"]"));
+        WebElement sizeddl = driver.findElement(By.xpath("//ul[@id=" + '"' + getAriaOwnsRes + '"' + "]/li[text()=" + '"' + arg1 + '"' + "]"));
         sizeddl.click();
     }
 
@@ -271,6 +277,7 @@ public class AddProducts {
         objWait.expliciteWaitEleClickable(driver, 10, addProductUpdateBtn);
         addProductUpdateBtn.click();
     }
+
     public void scrolltoupdateProductEle() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true)", addProductUpdateBtn);

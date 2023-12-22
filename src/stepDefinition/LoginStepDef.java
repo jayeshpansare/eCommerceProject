@@ -1,6 +1,5 @@
 package stepDefinition;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -11,8 +10,9 @@ import pages.LoginPages;
 
 public class LoginStepDef extends BaseClass {
     LoginPages objLogin = new LoginPages(getDriver());
+
     @Given("^open login page$")
-    public void open_login_page(){
+    public void open_login_page() {
         BrokenLinks.findBrokenLink(getDriver());
     }
 
@@ -32,9 +32,10 @@ public class LoginStepDef extends BaseClass {
     }
 
     @Then("^display dashboard$")
-    public void display_dashboard(){
+    public void display_dashboard() {
         BrokenLinks.findBrokenLink(getDriver());
     }
+
     @Given("^login page title as \"([^\"]*)\"$")
     public void login_page_title_as(String arg1) throws Throwable {
         Assert.assertEquals(getDriver().getTitle(), "Login");
