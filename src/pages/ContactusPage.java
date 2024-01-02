@@ -1,6 +1,5 @@
 package pages;
 
-import gherkin.lexer.Th;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
@@ -19,19 +18,24 @@ public class ContactusPage {
     private final WebDriver driver;
 
     public ContactusPage(WebDriver driver) {
-        this.driver=driver;
+        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
     @FindBy(xpath = "//textarea[@name=\"visitor_message\"]/preceding-sibling::label")
     WebElement message;
+
     public String getMegLabel() {
         return message.getText();
     }
+
     @FindBy(tagName = "//h3[text()=\"Contact Form\"]/parent::div/div[1]/div[2]/address[1]")
     WebElement addressTxt;
+
     public String getAddressTxt() {
         return addressTxt.getText();
     }
+
     @FindBy(xpath = "//h3[text()=\"Contact Form\"]/parent::div/div[1]/div[2]/address[2]/span")
     WebElement phoneNumber;
     @FindBy(xpath = "//h3[text()=\"Contact Form\"]/parent::div/div[1]/div[2]/address[3]/a")
@@ -54,7 +58,7 @@ public class ContactusPage {
     })
     WebElement getContactUsHeader;
     @FindAll({
-            @FindBy(xpath= "//h3[text()=\"Contact Form\"]"),
+            @FindBy(xpath = "//h3[text()=\"Contact Form\"]"),
             @FindBy(xpath = "//div[@class=\"page-banner\"]/div/h1")
     })
     WebElement contactForm;
@@ -64,6 +68,7 @@ public class ContactusPage {
     WebElement emailLabel;
     @FindBy(xpath = "//input[@name=\"visitor_phone\"]/preceding-sibling::label")
     WebElement phoneNum;
+
     public String getContactUsMenuName() {
         return getcontactUsMenu.getText();
     }
@@ -114,8 +119,8 @@ public class ContactusPage {
             Thread.sleep(200);
             alt.accept();
             Thread.sleep(500);
-        }catch (UnhandledAlertException | InterruptedException e){
-            throw  new RuntimeException(e);
+        } catch (UnhandledAlertException | InterruptedException e) {
+            throw new RuntimeException(e);
         }
         return msg;
     }

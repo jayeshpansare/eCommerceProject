@@ -1,18 +1,20 @@
 package lib;
 
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ExcelReader {
     public static int totalRow;
 
     public List<Map<String, String>> getData(String excelFilePath, String sheetName)
-            throws InvalidFormatException, IOException {
+            throws IOException {
 
         Workbook workbook = WorkbookFactory.create(new File(excelFilePath));
         Sheet sheet = workbook.getSheet(sheetName);
@@ -57,11 +59,11 @@ public class ExcelReader {
 
         return totalRow;
     }
+
     /**
      * This is used to read the data
-     *
-     * **/
-    public String[][] getExcelData(String excelFilePath, String sheetName){
+     **/
+    public String[][] getExcelData(String excelFilePath, String sheetName) {
         String[][] arrayExcelData = null;
         try {
             Workbook workbook = WorkbookFactory.create(new File(excelFilePath));
@@ -74,9 +76,9 @@ public class ExcelReader {
                     arrayExcelData[i - 1][j] = sheet.getRow(i).getCell(j).getStringCellValue();
                 }
             }
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return arrayExcelData;

@@ -29,8 +29,10 @@ public class FAQPages {
         wait.until(ExpectedConditions.elementToBeClickable(FAQmenu));
         FAQmenu.click();
     }
+
     @FindBy(xpath = "//*[@class=\"page-banner\"]/div/h1")
     WebElement headerTitle;
+
     public void getFAQHeader() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(headerTitle));
@@ -38,16 +40,16 @@ public class FAQPages {
     }
 
     public String getFAQAccdTitle(String arg1) {
-        WebElement getEle = driver.findElement(By.xpath("//div[@id=\"faqAccordion\"]/div["+arg1+"]/div/h4[1]"));
+        WebElement getEle = driver.findElement(By.xpath("//div[@id=\"faqAccordion\"]/div[" + arg1 + "]/div/h4[1]"));
         return getEle.getText();
     }
 
     public void FAQAccodTitleClik(String arg0) {
-        WebElement getEle =driver.findElement(By.xpath("//div[@id=\"faqAccordion\"]/div["+arg0+"]/div/h4[1]"));
+        WebElement getEle = driver.findElement(By.xpath("//div[@id=\"faqAccordion\"]/div[" + arg0 + "]/div/h4[1]"));
         getEle.click();
     }
 
     public String getFAQAccdDesc(String arg1) {
-        return driver.findElement(By.xpath("//div[@id=\"faqAccordion\"]/div["+arg1+"]/div[2]/div")).getAttribute("innerText");
+        return driver.findElement(By.xpath("//div[@id=\"faqAccordion\"]/div[" + arg1 + "]/div[2]/div")).getAttribute("innerText");
     }
 }

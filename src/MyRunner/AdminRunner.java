@@ -5,25 +5,28 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 import lib.BaseClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import java.io.IOException;
 
 @CucumberOptions(
         features = {"src/features"},
         glue = {"stepDefinition"},
-        tags = {"@FAQ"},
+        tags = {"@dashboard"},
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber",
                 "json:target/cucumber-reports/cucumber.json"
         })
-public class TestRunner extends AbstractTestNGCucumberTests{
-        BaseClass objBaseClass = new BaseClass();
-        @BeforeSuite
-        public void openWebsite() throws IOException {
-                objBaseClass.initBrowser();
-        }
-        @AfterSuite
-        public void closeSite(){
-                objBaseClass.tearDown();
-        }
+public class AdminRunner extends AbstractTestNGCucumberTests {
+    BaseClass objBaseClass = new BaseClass();
+    @Parameters({"env","browser"})
+    @BeforeSuite
+    public void openWebsite(String env, String browser) throws IOException {
+        objBaseClass.initBrowser(env, browser);
+    }
+
+    @AfterSuite
+    public void closeSite() {
+        objBaseClass.tearDown();
+    }
 }

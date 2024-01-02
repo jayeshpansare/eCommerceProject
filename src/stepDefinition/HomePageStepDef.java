@@ -1,6 +1,5 @@
 package stepDefinition;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -17,6 +16,7 @@ import java.util.HashSet;
 public class HomePageStepDef extends BaseClass {
     HomePage objHomePage = new HomePage(getDriver());
     HomePage objSearchProduct = new HomePage(getDriver());
+
     @When("^home page logo is available$")
     public void homePageLogoIsAvailable() {
         Assert.assertTrue(objHomePage.chkLogo());
@@ -147,35 +147,35 @@ public class HomePageStepDef extends BaseClass {
     }
 
     @Given("^search input must be available$")
-    public void search_input_must_be_available(){
+    public void search_input_must_be_available() {
         Assert.assertEquals("Search Product", objHomePage.getSearchPlaceHolder());
     }
 
     @When("^user enter invalid input as \"([^\"]*)\"$")
-    public void user_enter_invalid_input_as(String arg1){
+    public void user_enter_invalid_input_as(String arg1) {
         objHomePage.sendSearchinpt(arg1);
     }
 
     @When("^click on search submit button$")
-    public void click_on_search_submit_button(){
+    public void click_on_search_submit_button() {
         objHomePage.searchClk();
     }
 
     @Then("^display an search error message as \"([^\"]*)\"$")
-    public void display_an_search_error_message_as(String arg1){
+    public void display_an_search_error_message_as(String arg1) {
         Assert.assertEquals(arg1, objHomePage.getSearchProdErrorMsg());
     }
 
     @When("^user enter valid input as \"([^\"]*)\"$")
-    public void userEnterValidInputAs(String arg0){
+    public void userEnterValidInputAs(String arg0) {
         objHomePage.sendSearchinpt(arg0);
     }
 
     @Then("^display product as \"([^\"]*)\"$")
-    public void displayProductAs(String arg0){
+    public void displayProductAs(String arg0) {
         HashSet set = new HashSet<>();
-        if(!objHomePage.getListOfSearchProd().isEmpty()){
-            for (WebElement getEle : objHomePage.getListOfSearchProd()){
+        if (!objHomePage.getListOfSearchProd().isEmpty()) {
+            for (WebElement getEle : objHomePage.getListOfSearchProd()) {
                 set.add(getEle.getText());
             }
         }
@@ -183,38 +183,38 @@ public class HomePageStepDef extends BaseClass {
     }
 
     @Given("^feature products section must be available \"([^\"]*)\"$")
-    public void featureProductsSectionMustBeAvailable(String arg0){
+    public void featureProductsSectionMustBeAvailable(String arg0) {
         objHomePage.getFetProdTitle();
     }
 
     @When("^fetaure products desc must be available \"([^\"]*)\"$")
-    public void fetaureProductsDescMustBeAvailable(String arg0){
+    public void fetaureProductsDescMustBeAvailable(String arg0) {
         objHomePage.getFetProdDesc();
     }
 
     @Then("^display list of products \"([^\"]*)\"$")
-    public void displayListOfProducts(String arg0){
+    public void displayListOfProducts(String arg0) {
         String[] getprods = arg0.split("#");
-        ArrayList<String> set= new ArrayList<>();
-        for (String getprod:getprods){
-             Assert.assertTrue(objHomePage.getListOfFetProd().contains(getprod));
+        ArrayList<String> set = new ArrayList<>();
+        for (String getprod : getprods) {
+            Assert.assertTrue(objHomePage.getListOfFetProd().contains(getprod));
         }
     }
 
     @Given("^latest products section must be available \"([^\"]*)\"$")
-    public void latestProductsSectionMustBeAvailable(String arg0){
+    public void latestProductsSectionMustBeAvailable(String arg0) {
         Assert.assertEquals(arg0, objHomePage.getLetProdTitle());
     }
 
     @When("^latest products desc must be available \"([^\"]*)\"$")
-    public void latestProductsDescMustBeAvailable(String arg0){
+    public void latestProductsDescMustBeAvailable(String arg0) {
         objHomePage.getLatProdDesc();
     }
 
     @Then("^display list of latest products as \"([^\"]*)\"$")
-    public void displayListOfLatestProductsAs(String arg0){
+    public void displayListOfLatestProductsAs(String arg0) {
         String[] getprods = arg0.split("#");
-        for (String getprod:getprods){
+        for (String getprod : getprods) {
             Assert.assertTrue(objHomePage.getListOfLatProd().contains(getprod));
         }
     }

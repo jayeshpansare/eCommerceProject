@@ -9,6 +9,7 @@
 
 Feature: Validate contact us page
   As a user can validate contact us page info
+
   @contactus @smoke
   Scenario: validate contact us page
     Given validate contact us menu must be available as "Contact Us"
@@ -26,8 +27,8 @@ Feature: Validate contact us page
     When click on send message button
     Then display message as "<msg>"
     Examples:
-      |msg|
-      |Please enter your name.#Please enter your phone number.#Please enter your email address.#Please enter your message.  |
+      | msg                                                                                                                 |
+      | Please enter your name.#Please enter your phone number.#Please enter your email address.#Please enter your message. |
 
   @contactus @smoke
   Scenario Outline:
@@ -40,5 +41,5 @@ Feature: Validate contact us page
     Then display message as "<msg>"
 
     Examples:
-    |nameinpt|emailinpt|phonenumberinpt|messageinpt|msg|
-    |test    |test@gmail.com|7841845869|test test test test |Thank you for sending email. We will contact you shortly.|
+      | nameinpt | emailinpt      | phonenumberinpt | messageinpt         | msg                                                       |
+      | test     | test@gmail.com | 7841845869      | test test test test | Thank you for sending email. We will contact you shortly. |

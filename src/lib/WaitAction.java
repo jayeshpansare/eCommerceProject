@@ -13,6 +13,7 @@ public class WaitAction {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(duruation));
         wait.until(ExpectedConditions.presenceOfElementLocated(eleLocator));
     }
+
     public void expliciteWaitVisibilityEle(WebDriver driver, int duruation, By eleLocator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(duruation));
         wait.until(ExpectedConditions.visibilityOfElementLocated(eleLocator));
@@ -27,6 +28,7 @@ public class WaitAction {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(duruation));
         wait.until(ExpectedConditions.elementToBeSelected(eleLocator));
     }
+
     public void textToBePresentInElement(WebDriver driver, WebElement eleLocator, String txt, int duruation) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(duruation));
         wait.until(ExpectedConditions.textToBePresentInElement(eleLocator, txt));

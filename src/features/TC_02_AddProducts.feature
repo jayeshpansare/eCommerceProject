@@ -14,12 +14,14 @@ Feature: Validate add product page
   Valid: Verify that User can enter valid inputs
   Invalid: Verify that user can enter invalid inputs
 
+  @dashboard
   Scenario: validate top level and Mid level category
     Given Open Add product management menu
     And Open Add product form
     When User can click on top level category input
     Then validate list of top level category
 
+  @dashboard
   Scenario Outline: validate add product form with invalid inputs
     Given add product form is open
     When Scroll to Add product button
@@ -30,6 +32,7 @@ Feature: Validate add product page
       | errormessages                                |
       | You must have to select a top level category |
 
+  @dashboard
   Scenario Outline: validate add product form with valid inputs
     Given add product form is open
     When user select top level cat as "<toplevelcat>"
@@ -58,6 +61,7 @@ Feature: Validate add product page
       | toplevelcat | midlevelcat | endlevelcat           | productName  | oldprice | newprice | quantity | size | colour | featurePhoto | otherPhoto | description    | shortDesc     | features     | condition     | returnpolicy     | isfeature | isactive |
       | Electronics | Computers   | Computers and Tablets | test Product | 30       | 40       | 4        | S    | Red    | featureP     | OtherP     | description123 | shortDesc 123 | features 123 | condition 123 | returnpolicy 123 | Yes       | Yes      |
 
+  @dashboard
   Scenario Outline: validate product information with valid data
     Given click on view all button
     When open add product table
@@ -70,6 +74,7 @@ Feature: Validate add product page
       | toplevelcat | midlevelcat | endlevelcat           | productName  | oldprice | newprice | quantity |  |  |  |  |  |  |  |  |  |  |  |
       | Electronics | Computers   | Computers and Tablets | test Product | 30       | 40       | 4        |  |  |  |  |  |  |  |  |  |  |  |
 
+  @dashboard
   Scenario Outline: validate update product form with valid inputs
     Given update product form should be open
     When user select top level cat as "<toplevelcat>"
@@ -96,8 +101,9 @@ Feature: Validate add product page
 
     Examples:
       | toplevelcat | midlevelcat | endlevelcat | productName         | oldprice | newprice | quantity | size | colour | featurePhoto | otherPhoto | description        | shortDesc        | features                    | condition        | returnpolicy  | isfeature | isactive |
-      | Kids        | Clothing    | Boys        | update test Product | 40       | 45       | 5        | XL   | Green  | featureP     | OtherP     | update description | update shortDesc | update features description | update condition | update policy | No       | No      |
+      | Kids        | Clothing    | Boys        | update test Product | 40       | 45       | 5        | XL   | Green  | featureP     | OtherP     | update description | update shortDesc | update features description | update condition | update policy | No        | No       |
 
+  @dashboard
   Scenario: delete product form table
     Given click on view all button
     When open add product table
