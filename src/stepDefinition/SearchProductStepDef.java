@@ -13,8 +13,8 @@ public class SearchProductStepDef extends BaseClass {
 
     @Given("^open web site \"([^\"]*)\"$")
     public void open_web_site(String URL) {
-        objSearchProduct.openNewTab();
-        objSearchProduct.openNewSite(URL);
+//        objSearchProduct.openNewTab();
+//        objSearchProduct.openNewSite(URL);
     }
 
     @Given("^over on main menu \"([^\"]*)\"$")

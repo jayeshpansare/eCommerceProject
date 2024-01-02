@@ -8,8 +8,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -141,7 +144,7 @@ public class AddProducts {
     WebElement editBtn;
     @FindBy(xpath = "//button[@name=\"form1\" and text()=\"Update\"]")
     WebElement addProductUpdateBtn;
-    @FindBy(xpath = "//table[@id=\"example1\"]/tbody/tr[1]/td[10]/a[1]")
+    @FindBy(xpath = "//table[@id=\"example1\"]/tbody/tr[1]/td[10]/a[2]")
     WebElement deleteBtn;
     @FindBy(id = "myModalLabel")
     WebElement headerTitle;
@@ -217,11 +220,11 @@ public class AddProducts {
     }
 
     public void selectFeaturePhoto(String arg1) {
-        featurePhoto.sendKeys("C:\\Users\\Dell\\Downloads\\images.jpg");
+        featurePhoto.sendKeys("C:\\Users\\jayes\\IdeaProjects\\eCommerceProject\\src\\data\\istockphoto.jpg");
     }
 
     public void selectOthetPhoto(String arg1) {
-        otherPhoto.sendKeys("C:\\Users\\Dell\\Downloads\\images.jpg");
+        otherPhoto.sendKeys("C:\\Users\\jayes\\IdeaProjects\\eCommerceProject\\src\\data\\istockphoto.jpg");
     }
 
     public void enterDesc(String arg1) {
@@ -292,6 +295,8 @@ public class AddProducts {
     }
 
     public void getDeleteConPopupModelTitle() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(deleteModelTitle));
         deleteModelTitle.getText();
     }
 
@@ -300,6 +305,8 @@ public class AddProducts {
     }
 
     public void clickOnDeletePopupBtn() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(popupDeleteBtn));
         popupDeleteBtn.click();
     }
 }

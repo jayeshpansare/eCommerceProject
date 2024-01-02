@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
+    <parameter name="env" value="site"></parameter>
+    <parameter name="browser" value="firefox"></parameter>
+    <!-- chrome, edge, firefox -->
     <test verbose="2" preserve-order="true" name="C:/Users/jayes/IdeaProjects/eCommerceProject">
         <classes>
-            <class name="MyRunner.TestRunner">
+            <class name="MyRunner.webRunner">
             </class>
         </classes>
     </test>
