@@ -104,7 +104,7 @@
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
-                <version>5.6.0</version>
+                <version>5.3.0</version>
                 <executions>
                     <execution>
                         <id>execution</id>
@@ -117,6 +117,7 @@
                             <skip>false</skip>
                             <outputDirectory>target/cucumber-reports</outputDirectory>
                             <inputDirectory>target/cucumber-reports</inputDirectory>
+                            <checkBuildResult>false</checkBuildResult>
                             <jsonFiles>
                                 <param>**/*.json</param>
                             </jsonFiles>

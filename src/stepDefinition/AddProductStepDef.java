@@ -16,23 +16,22 @@ public class AddProductStepDef extends BaseClass {
     AddProducts objAddProducts = new AddProducts(getDriver());
 
     @Given("^Open Add product form$")
-    public void open_Add_product_form() throws Throwable {
+    public void open_Add_product_form(){
         objAddProducts.openAddProductsForm();
     }
 
     @Given("^Open Add product management menu$")
-    public void open_Add_product_management_menu() throws Throwable {
+    public void open_Add_product_management_menu(){
         objAddProducts.openaddproductsmenu();
     }
 
     @When("^User can click on top level category input$")
-    public void user_can_click_on_top_level_category_input() throws Throwable {
+    public void user_can_click_on_top_level_category_input(){
         objAddProducts.clickOnTopLevelCat();
     }
 
     @Then("^validate list of top level category$")
-    public void validate_list_of_top_level_category() throws Throwable {
-
+    public void validate_list_of_top_level_category(){
         List<WebElement> topLevelEle = objAddProducts.getListOfMidLevelCat();
         for (WebElement topLevelLink : topLevelEle) {
             System.out.println(topLevelLink.getText());
@@ -46,25 +45,21 @@ public class AddProductStepDef extends BaseClass {
 
     @When("^Scroll to Add product button$")
     public void scroll_to_Add_product_button() {
-
         objAddProducts.scrolltoAddProductEle();
     }
 
     @When("^Click on Add product button$")
     public void click_on_Add_product_button() {
-
         objAddProducts.addProductEleClick();
     }
 
     @When("^Click on Add product button only once$")
     public void click_on_Add_product_button_Only() {
-
         objAddProducts.addProductEleClickOnly();
     }
 
     @Then("^display an error message as \"([^\"]*)\"$")
     public void display_an_error_message_as(String errorMsg) throws InterruptedException {
-
         Assert.assertTrue(objAddProducts.getErrorMessages().contains(errorMsg));
     }
 
@@ -87,7 +82,7 @@ public class AddProductStepDef extends BaseClass {
     }
 
     @When("^user enter product name as \"([^\"]*)\"$")
-    public void user_enter_product_name_as(String arg1) throws Throwable {
+    public void user_enter_product_name_as(String arg1){
         objAddProducts.enterProductName(arg1);
     }
 
@@ -152,12 +147,12 @@ public class AddProductStepDef extends BaseClass {
     }
 
     @When("^user select feature as \"([^\"]*)\"$")
-    public void user_select_feature_as(String arg1) throws Throwable {
+    public void user_select_feature_as(String arg1){
         objAddProducts.selectfeature(arg1);
     }
 
     @When("^user select active as \"([^\"]*)\"$")
-    public void user_select_active_as(String arg1) throws Throwable {
+    public void user_select_active_as(String arg1){
         objAddProducts.selectActive(arg1);
     }
 
@@ -228,27 +223,27 @@ public class AddProductStepDef extends BaseClass {
      * Delete add product
      **/
     @Then("^click on delete button$")
-    public void click_on_delete_button() throws Throwable {
+    public void click_on_delete_button(){
         objAddProducts.clickOnDeletebtn();
     }
 
     @Then("^display delete confirmation form$")
-    public void display_delete_confirmation_form() throws Throwable {
+    public void display_delete_confirmation_form(){
         objAddProducts.getDeleteConPopupModelTitle();
     }
 
     @Then("^validate delete confirmation title as \"([^\"]*)\"$")
-    public void validate_delete_confirmation_title_as(String arg1) throws Throwable {
-        objAddProducts.getDeleteConPopupTitle();
+    public void validate_delete_confirmation_title_as(String arg1){
+        Assert.assertEquals(objAddProducts.getDeleteConPopupTitle(), arg1);
     }
 
     @Then("^validate delete confirmation description as \"([^\"]*)\"$")
-    public void validate_delete_confirmation_description_as(String arg1) throws Throwable {
-        objAddProducts.getDeleteConPopDesc();
+    public void validate_delete_confirmation_description_as(String arg1){
+        Assert.assertEquals(objAddProducts.getDeleteConPopDesc(), arg1);
     }
 
     @Then("^Click on delete button for confirmation form$")
-    public void click_on_delete_button_for_confirmation_form() throws Throwable {
+    public void click_on_delete_button_for_confirmation_form(){
         objAddProducts.clickOnDeletePopupBtn();
     }
 }

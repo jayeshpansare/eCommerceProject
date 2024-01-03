@@ -16,7 +16,8 @@ public class CategoryStepDef extends BaseClass {
     category objCat = new category(getDriver());
 
     @Given("^home page is available \"([^\"]*)\"$")
-    public void homePageIsAvailable(String arg0) {
+    public void homePageIsAvailable(String arg0) throws InterruptedException {
+        Thread.sleep(5000);
         Assert.assertEquals(arg0, getDriver().getTitle());
     }
 
@@ -59,7 +60,7 @@ public class CategoryStepDef extends BaseClass {
     }
 
     @When("^user click on \"([^\"]*)\" category and \"([^\"]*)\" sub category and \"([^\"]*)\" sub category$")
-    public void userClickOnCategoryAndSubCategoryAndSubCategory(String arg0, String arg1, String arg2) throws Throwable {
+    public void userClickOnCategoryAndSubCategoryAndSubCategory(String arg0, String arg1, String arg2){
         objCat.catClick(arg0, arg1, arg2);
     }
 }

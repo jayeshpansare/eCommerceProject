@@ -47,7 +47,7 @@ public class HomePageStepDef extends BaseClass {
 
     @Then("^validate registartion page title as \"([^\"]*)\"$")
     public void validate_registartion_page_title_as(String arg1) {
-        objHomePage.getLoginTitle();
+        Assert.assertEquals(objHomePage.getLoginTitle(), arg1);
     }
 
     @Then("^back to home page$")
@@ -61,7 +61,7 @@ public class HomePageStepDef extends BaseClass {
     }
 
     @Then("^\"([^\"]*)\" and \"([^\"]*)\" links are available$")
-    public void andLinksAreAvailable(String arg0, String arg1) throws Throwable {
+    public void andLinksAreAvailable(String arg0, String arg1){
         Assert.assertEquals(arg0.trim(), objHomePage.chkTextPresent(arg0).trim());
         Assert.assertEquals(arg1.trim(), objHomePage.chkTextPresent(arg1).trim());
     }
@@ -70,11 +70,6 @@ public class HomePageStepDef extends BaseClass {
     public void click_on_link(String arg1) {
         objHomePage.linkClk(arg1);
     }
-//    @Given("^open web site \"([^\"]*)\"$")
-//    public void open_web_site(String arg1){
-//        objSearchProduct.openNewTab();
-//        objSearchProduct.openNewSite(arg1);
-//    }
 
     @Given("^Send message section is available and title as \"([^\"]*)\"$")
     public void send_message_section_is_available_and_title_as(String arg1) {
@@ -137,7 +132,7 @@ public class HomePageStepDef extends BaseClass {
     }
 
     @Then("^display send message success message as \"([^\"]*)\"$")
-    public void displaySendMessageSuccessMessageAs(String arg0) throws Throwable {
+    public void displaySendMessageSuccessMessageAs(String arg0){
         objSearchProduct.getSuccessMsg();
     }
 
@@ -173,7 +168,7 @@ public class HomePageStepDef extends BaseClass {
 
     @Then("^display product as \"([^\"]*)\"$")
     public void displayProductAs(String arg0) {
-        HashSet set = new HashSet<>();
+        HashSet<Object> set = new HashSet<>();
         if (!objHomePage.getListOfSearchProd().isEmpty()) {
             for (WebElement getEle : objHomePage.getListOfSearchProd()) {
                 set.add(getEle.getText());

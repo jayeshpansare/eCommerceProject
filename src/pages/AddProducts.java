@@ -54,8 +54,8 @@ public class AddProducts {
     @FindBy(xpath = "//label[text()=\"Select Color\"]/following-sibling::div/select/following-sibling::span/span/span")
     WebElement colourddlres;
 
-    @FindBy(xpath = "//ul[@id=\"select2-tcat_id-oh-results\"]")
-    List<WebElement> MidLevelCatddl;
+//    @FindBy(xpath = "//ul[@id=\"select2-tcat_id-oh-results\"]")
+//    List<WebElement> MidLevelCatddl;
     @FindBy(xpath = "//button[@name=\"form1\" and text()=\"Add Product\"]")
     WebElement addProductFormBtn;
     @FindBy(xpath = "//section[@class=\"content\"]/div/div/div/p")
@@ -113,7 +113,6 @@ public class AddProducts {
 
     /***
      * Add product form
-     *
      * ***/
     @FindBy(name = "p_name")
     WebElement productName;
@@ -290,8 +289,8 @@ public class AddProducts {
         deleteBtn.click();
     }
 
-    public void getDeleteConPopupTitle() {
-        headerTitle.getText();
+    public String getDeleteConPopupTitle() {
+        return headerTitle.getText();
     }
 
     public void getDeleteConPopupModelTitle() {
@@ -300,8 +299,8 @@ public class AddProducts {
         deleteModelTitle.getText();
     }
 
-    public void getDeleteConPopDesc() {
-        getDeleteModelDesc.getText();
+    public String getDeleteConPopDesc() {
+        return getDeleteModelDesc.getText();
     }
 
     public void clickOnDeletePopupBtn() {
