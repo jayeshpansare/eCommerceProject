@@ -20,3 +20,4 @@ Feature: Validate aboutus page
   Scenario: validate the description on FAQ page
     Given about usp page must be available
     Then validate the about us description as ""
+    And back to home page

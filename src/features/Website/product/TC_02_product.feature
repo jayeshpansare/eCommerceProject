@@ -19,7 +19,7 @@ Feature: Validate product page
 
     Examples:
       | mainmenu    | submenu               | productname  | price |  |
-      | Electronics | Computers and Tablets | test product | 40    |  |
+      | Men | Watches | Amazfit GTS 3 Smart Watch for Android iPhone | 179    |  |
 
   @AddProduct @smoke
   Scenario Outline: validate add product page

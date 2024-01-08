@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <parameter name="env" value="site"></parameter>
-    <parameter name="browser" value="firefox"></parameter>
+    <parameter name="env" value="site"/>
+    <parameter name="browser" value="chrome"/>
     <!-- chrome, edge, firefox -->
-    <test verbose="2" preserve-order="true" name="C:/Users/jayes/IdeaProjects/eCommerceProject">
+    <listeners>
+        <listener class-name="lib.ITestListenerImpl"/>
+    </listeners>
+    <test verbose="2" name="C:/Users/jayes/IdeaProjects/eCommerceProject">
         <classes>
             <class name="MyRunner.webRunner">
             </class>
