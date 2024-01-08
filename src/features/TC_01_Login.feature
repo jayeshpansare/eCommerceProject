@@ -25,7 +25,7 @@ Feature: Validate login page
 #      | Test@gmail.com | Sheet1   | Email Address does not match |
 #      | Test@gmail.com | Test@123 | Email Address does not match |
 
-  @valid @dashboard
+  @valid @dashboard @run
   Scenario Template:  validate login with valid inputs
     Given login page title as "Login"
     When User enter email and password using "<validemail>" and "<validpassword>"

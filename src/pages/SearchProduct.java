@@ -21,17 +21,13 @@ public class SearchProduct {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//*[text()=\"test product\"]")
+    @FindBy(xpath = "//*[text()=\"Amazfit GTS 3 Smart Watch for Android iPhone\"]")
     WebElement productName;
-    @FindBy(xpath = "//*[text()=\"test product\"]/parent::h3/following-sibling::h4")
+    @FindBy(xpath = "//*[text()=\"Amazfit GTS 3 Smart Watch for Android iPhone\"]/parent::h3/following-sibling::h4")
     WebElement price;
 
     public void openNewTab() {
         driver.switchTo().newWindow(WindowType.WINDOW);
-    }
-
-    public void openNewSite(String url) {
-        driver.navigate().to(url);
     }
 
     public void overMainMenu(String arg1) {
@@ -58,7 +54,7 @@ public class SearchProduct {
     public String getProductPrice() {
         String getPrice = price.getText().trim();
         String getNum = getPrice.replace("$", "");
-        return getNum.substring(0, 2);
+        return getNum.substring(0, 3);
     }
 
     @FindBy(xpath = "//div[@class=\"p-title\"]/h2")

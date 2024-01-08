@@ -13,8 +13,8 @@ import java.io.IOException;
 @CucumberOptions(
         features = {"src/features"},
         glue = {"stepDefinition"},
-//        tags = {"@homepage, @AddProduct, @category, @contactus, @FAQ, @Aboutus, @login"},
-        tags = {"@Registration"},
+        tags = {"@homepage, @AddProduct, @category, @contactus, @FAQ, @Aboutus, @login"},
+//        tags = {"@Registration"},
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber",
                 "json:target/cucumber-reports/cucumber.json"
