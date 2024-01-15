@@ -22,12 +22,12 @@ import java.io.IOException;
 public class webRunner extends AbstractTestNGCucumberTests {
     BaseClass objBaseClass = new BaseClass();
     @Parameters({"env", "browser"})
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void openWebsite(@Optional("site") String env,@Optional("chrome") String browser) throws IOException {
         objBaseClass.initBrowser(env, browser);
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void closeSite() {
         objBaseClass.tearDown();
     }

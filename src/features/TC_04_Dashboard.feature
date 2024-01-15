@@ -10,7 +10,7 @@
 Feature: Validate Dashboard page
  As a user can validate the dashboard, User can validate all the sections and its count.
 
-  @dashboard @run
+  @dashboard
   Scenario Outline: validate the dashboard sections
     Given Open dashboard sections
     When validate the dashboard title as "Dashboard"

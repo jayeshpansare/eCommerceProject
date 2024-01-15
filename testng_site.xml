@@ -9,8 +9,7 @@
     </listeners>
     <test verbose="2" name="C:/Users/jayes/IdeaProjects/eCommerceProject">
         <classes>
-            <class name="MyRunner.webRunner">
-            </class>
+            <class name="MyRunner.webRunner"/>
         </classes>
     </test>
 </suite>

@@ -24,15 +24,16 @@ public class ProductTestStepDef extends BaseClass {
             WebElement table = getDriver().findElement(By.tagName("table"));
             List<WebElement> totalRows = table.findElements(By.tagName("tr"));
             for (int i = 1; i < totalRows.size(); i++) {
-                if (!eq) {
-                    List<WebElement> Columns_row = totalRows.get(i).findElements(By.tagName("td"));
-                    if (Columns_row.get(2).getText().equals(arg1)) {
-                        eq = true;
-                        System.out.println(2 + " " + Columns_row.get(2).getText());
-                    } else {
-                        eq = false;
-                    }
-                }
+                System.out.println(totalRows.get(i).findElement(By.tagName("td")).getText());
+//                if (!eq) {
+//                    List<WebElement> Columns_row = totalRows.get(i).findElements(By.tagName("td"));
+//                    if (Columns_row.get(2).getText().equals(arg1)) {
+//                        eq = true;
+//                        System.out.println(2 + " " + Columns_row.get(2).getText());
+//                    } else {
+//                        eq = false;
+//                    }
+//                }
             }
 
             if (!eq) {
