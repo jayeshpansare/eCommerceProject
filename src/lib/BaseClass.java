@@ -24,7 +24,7 @@ public class BaseClass {
         String webURL = readProperty().getProperty("webURL");
 
         WebDriverManager.firefoxdriver().setup();
-        WebDriverManager.chromedriver().setup();
+//        WebDriverManager.chromedriver().setup();
         WebDriverManager.edgedriver().setup();
         switch (browser){
             case "chrome":
@@ -32,7 +32,7 @@ public class BaseClass {
                 options.getBrowserName();
                 options.getBrowserVersion();
                 options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-                options.addArguments("--incognito");
+//                options.addArguments("--incognito");
                 driver = new ChromeDriver();
                 break;
             case "edge":

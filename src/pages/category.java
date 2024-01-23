@@ -72,7 +72,7 @@ public class category {
         WebElement ele = driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\"" + arg0 + "\"]"));
         WebElement subele = driver.findElement(By.xpath("//div[@class=\"menu-container\"]/div/ul/li/a[text()=\"" + arg0 + "\"]/parent::li/ul/li/a[text()=\"" + arg1 + "\"]/parent::li/ul/li/a[text()=\"" + arg2 + "\"]"));
         action = new Actions(driver);
-        action.moveToElement(ele).build().perform();
+        action.clickAndHold(ele).build().perform();
         action.click(subele).build().perform();
     }
 

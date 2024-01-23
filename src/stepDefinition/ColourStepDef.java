@@ -56,9 +56,33 @@ public class ColourStepDef extends BaseClass {
     public void validateTheColourPresentIntoTable(String arg0){
         objColourPage.getColourNameFromTable(arg0);
     }
+    @Then("^click on edit button for colurname \"([^\"]*)\"$")
+    public void clickOnEditButtonForColurname(String arg0){
+        objColourPage.colourEditBtnClick(arg0);
+    }
 
-    @Then("^click on edit button$")
-    public void clickOnEditButton() {
+    @When("^click on update button for setting form$")
+    public void clickOnUpdateButtonForSettingForm() {
+        objColourPage.updateColourSettingBtn();
+    }
 
+    @And("^validate delete colour confirmation popup title as \"([^\"]*)\"$")
+    public void validateDeleteColourConfirmationPopupTitleAs(String arg0){
+        objColourPage.getDeletePopupTitle();
+    }
+
+    @And("^validate delete colour confirmation popup description as \"([^\"]*)\"$")
+    public void validateDeleteColourConfirmationPopupDescriptionAs(String arg0){
+        objColourPage.getDeletePopupDesc();
+    }
+
+    @And("^click on delete button on colour popup$")
+    public void clickOnDeleteButtonOnColourPopup() {
+        objColourPage.deleteBtnClk();
+    }
+
+    @Then("^click on delete button for colour for colurname \"([^\"]*)\"$")
+    public void clickOnDeleteButtonForColourForColurname(String arg0){
+        objColourPage.colourDeleteBtnClk(arg0);
     }
 }

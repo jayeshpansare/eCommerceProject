@@ -1,5 +1,8 @@
 package pages;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lib.TableEntry;
+import lib.WaitAction;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,9 +10,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.Duration;
 import java.util.List;
+
+import static lib.DBConnect.DBConnect;
 
 public class ColourPage {
     private final WebDriver driver;
@@ -56,6 +65,7 @@ public class ColourPage {
     @FindBy(name = "color_name")
     WebElement colourInpt;
     public void ColoursendInpt(String arg1) {
+        colourInpt.clear();
         colourInpt.sendKeys(arg1);
     }
     @FindBy(xpath = "//button[@name=\"form1\" and text()=\"Submit\"]")
@@ -70,30 +80,50 @@ public class ColourPage {
     }
     @FindBy(xpath = "//li[@id=\"example1_next\"]/a")
     WebElement getNextBtn;
-    public void getColourNameFromTable(String arg0) {
-        boolean eq = false;
-        while (!eq){
-            WebElement table = driver.findElement(By.id("example1"));
-            List<WebElement> getRow = table.findElements(By.tagName("tr"));
-            for (int i = 1; i < getRow.size(); i++) {
-                if (!eq) {
-                    List<WebElement> Columns_row = getRow.get(i).findElements(By.tagName("td"));
-                    if (Columns_row.get(1).getText().equals(arg0)) {
-//                        return Columns_row;
-                        eq = true;
-                    }
-                }else {
-                    eq = true;
-                }
+    public void getColourNameFromTable(String arg0){
+        String getColourName = TableEntry.getSingleCols(driver, arg0, 1, getNextBtn).get(1).getText();
+        try {
+            Statement st = DBConnect();
+            ResultSet rs = st.executeQuery("select * from colors where srno=30");
+            while (rs.next()){
+//                Assert.assertEquals(getColourName, rs.getString("colors_name"));
             }
-            if (!eq) {
-                WebElement nextBtn = getNextBtn;
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-                wait.until(ExpectedConditions.elementToBeClickable(nextBtn));
-                nextBtn.click();
-            } else {
-                eq = true;
-            }
+        }catch (SQLException e){
+            e.printStackTrace();
         }
+    }
+
+    public void colourEditBtnClick(String arg0) {
+        List<WebElement> getTagName = TableEntry.getSingleCols(driver, arg0, 1, getNextBtn).get(2).findElements(By.tagName("a"));
+        getTagName.get(0).click();
+    }
+    @FindBy(xpath = "//button[@name=\"form1\" and text()=\"Update\"]")
+    WebElement updateColourSettingBtn;
+    public void updateColourSettingBtn() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(updateColourSettingBtn));
+        updateColourSettingBtn.click();
+    }
+    @FindBy(className = "modal-title")
+    WebElement deletePopupTitle;
+    public String getDeletePopupTitle() {
+        return deletePopupTitle.getText();
+    }
+    @FindBy(className = "modal-body")
+    WebElement deletePopupDesc;
+    public void getDeletePopupDesc() {
+        deletePopupDesc.getText();
+    }
+    @FindBy(xpath = "//div[@class=\"modal-footer\"]/a")
+    WebElement deleteBtn;
+    public void deleteBtnClk() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(deleteBtn));
+        deleteBtn.click();
+    }
+
+    public void colourDeleteBtnClk(String arg0) {
+        List<WebElement> getTagName = TableEntry.getSingleCols(driver, arg0, 1, getNextBtn).get(2).findElements(By.tagName("a"));
+        getTagName.get(1).click();
     }
 }

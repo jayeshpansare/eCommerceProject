@@ -13,8 +13,8 @@ import java.io.IOException;
 @CucumberOptions(
         features = {"src/features"},
         glue = {"stepDefinition"},
-        tags = {"@homepage, @AddProduct, @category, @contactus, @FAQ, @Aboutus, @login"},
-//        tags = {"@Registration"},
+        //       tags = {"@homepage, @AddProduct, @category, @contactus, @FAQ, @Aboutus, @login"},
+        tags = {"@homepage,@AddProduct"},
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber",
                 "json:target/cucumber-reports/cucumber.json"
@@ -23,7 +23,7 @@ public class webRunner extends AbstractTestNGCucumberTests {
     BaseClass objBaseClass = new BaseClass();
     @Parameters({"env", "browser"})
     @BeforeSuite(alwaysRun = true)
-    public void openWebsite(@Optional("site") String env,@Optional("chrome") String browser) throws IOException {
+    public void openWebsite(@Optional("site") String env,@Optional("firefox") String browser) throws IOException {
         objBaseClass.initBrowser(env, browser);
     }
 

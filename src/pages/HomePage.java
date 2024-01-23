@@ -173,6 +173,7 @@ public class HomePage {
     }
 
     public void searchClk() {
+        System.out.println(searchBtn.getCssValue("background-color"));
         searchBtn.click();
     }
 
@@ -198,10 +199,10 @@ public class HomePage {
     }
 
     public List<String> getListOfFetProd() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(getFetProdTitle));
-        Actions obj = new Actions(driver);
-        obj.moveToElement(getFetProdTitle).build().perform();
+//        Actions obj = new Actions(driver);
+//        obj.moveToElement(getFetProdTitle).build().perform();
         ArrayList<String> fetaureData = new ArrayList<>();
         List<WebElement> getEle = driver.findElements(By.xpath("//h2[text()=\"Featured Products\"]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div/div/div/div/div[2]/h3/a"));
         for (WebElement getEles : getEle) {
@@ -221,8 +222,8 @@ public class HomePage {
     public List<String> getListOfLatProd() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(getLetProdTitle));
-        Actions obj = new Actions(driver);
-        obj.moveToElement(getLetProdTitle).build().perform();
+//        Actions obj = new Actions(driver);
+//        obj.moveToElement(getLetProdTitle).build().perform();
         ArrayList<String> latestData = new ArrayList<>();
         List<WebElement> getEle = driver.findElements(By.xpath("//h2[text()=\"Latest Products\"]/parent::div/parent::div/parent::div/following-sibling::div/div/div/div/div/div/div/div[2]/h3/a"));
         for (WebElement getEles : getEle) {

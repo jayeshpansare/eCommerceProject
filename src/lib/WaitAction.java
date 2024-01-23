@@ -33,4 +33,15 @@ public class WaitAction {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(duruation));
         wait.until(ExpectedConditions.textToBePresentInElement(eleLocator, txt));
     }
+    /**
+     * Custom waits
+     * **/
+    public static void staticWait(int sleepTimeInSeconds)
+    {
+        try {
+            Thread.sleep(sleepTimeInSeconds* 1000L);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

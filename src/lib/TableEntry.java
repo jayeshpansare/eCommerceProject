@@ -3,7 +3,10 @@ package lib;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,5 +32,34 @@ public class TableEntry {
             i++;
         }
         return mainData;
+    }
+
+    public static List<WebElement> getSingleCols(WebDriver driver, String arg0, int rowcount, WebElement getNextBtn) {
+        boolean eq = false;
+        List<WebElement> Columns_rows = null;
+        while (!eq) {
+            WebElement table = driver.findElement(By.id("example1"));
+            List<WebElement> getRow = table.findElements(By.tagName("tr"));
+            for (int i = 1; i < getRow.size(); i++) {
+                if (!eq) {
+                    List<WebElement> Columns_row = getRow.get(i).findElements(By.tagName("td"));
+                    if (Columns_row.get(rowcount).getText().equals(arg0)) {
+                        Columns_rows = Columns_row;
+                        eq = true;
+                    }
+                } else {
+                    eq = true;
+                }
+            }
+            if (!eq) {
+                WebElement nextBtn = getNextBtn;
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+                wait.until(ExpectedConditions.elementToBeClickable(nextBtn));
+                nextBtn.click();
+            } else {
+                eq = true;
+            }
+        }
+        return Columns_rows;
     }
 }
